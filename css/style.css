@@ -1,0 +1,181 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f7f7f7;
+    color: #333;
+}
+
+/* TOP BAR */
+.top-bar {
+    background: #2b2b2b;
+    color: white;
+    text-align: center;
+    padding: 6px;
+    font-size: 14px;
+}
+
+/* HEADER */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background: white;
+    border-bottom: 1px solid #ddd;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* LOGO (CSS) */
+.logo {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #6a5cff, #8f7cff);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.site-name {
+    font-weight: bold;
+}
+
+/* MENU */
+.menu a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: #555;
+}
+
+.menu a:hover {
+    color: #6a5cff;
+}
+
+/* CONTENT */
+.content {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+/* IMAGES */
+.image-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.image-row img {
+    width: 100%;
+    border-radius: 12px;
+}
+
+/* TEXT */
+.text-block p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+/* SKILLS */
+.skills {
+    margin-top: 60px;
+    text-align: center;
+}
+
+.skills h2 {
+    margin-bottom: 30px;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.skill-card {
+    background: white;
+    padding: 25px;
+    border-radius: 16px;
+}
+
+.skill-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin: 0 auto 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+}
+
+.blue { background: #4c6fff; }
+.purple { background: #9b6cff; }
+.green { background: #4caf50; }
+.yellow { background: #f4b400; }
+.red { background: #e53935; }
+.cyan { background: #00acc1; }
+
+/* CTA */
+.cta {
+    background: linear-gradient(135deg, #6a5cff, #7b6cff);
+    color: white;
+    text-align: center;
+    padding: 60px 20px;
+    margin-top: 60px;
+}
+
+.cta-buttons {
+    margin-top: 20px;
+}
+
+.btn {
+    padding: 12px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    margin: 5px;
+    display: inline-block;
+}
+
+.btn.light {
+    background: white;
+    color: #6a5cff;
+}
+
+.btn.dark {
+    border: 2px solid white;
+    color: white;
+}
+
+/* FOOTER */
+.footer {
+    background: #1e1e1e;
+    color: white;
+    text-align: center;
+    padding: 15px;
+}
+
+/* ADAPTIVE */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .image-row {
+        flex-direction: column;
+    }
+}
