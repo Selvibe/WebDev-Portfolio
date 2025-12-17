@@ -19,9 +19,11 @@ checkboxes.forEach(cb => {
     });
 });
 
+
+
 function updateProgress() {
     const completed = [...checkboxes].filter(cb => cb.checked).length;
-    const percent = (completed / TOTAL_TASKS) * 100;
+    const percent = (completed / TOTAL_TASKS) * 60;
 
     progressFill.style.width = percent + '%';
     progressText.textContent = `Выполнено заданий: ${completed} из ${TOTAL_TASKS}`;
