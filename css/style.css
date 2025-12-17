@@ -301,3 +301,54 @@ body {
 .task-check:nth-of-type(3):checked ~ .progress-section .progress-fill { width: 60%; }
 .task-check:nth-of-type(4):checked ~ .progress-section .progress-fill { width: 80%; }
 .task-check:nth-of-type(5):checked ~ .progress-section .progress-fill { width: 100%; }
+
+
+/* ===== PROGRESS ===== */
+.progress-section {
+    margin: 50px 0;
+}
+
+.progress-wrapper {
+    position: relative;
+    margin-top: 20px;
+}
+
+.progress-bar {
+    height: 14px;
+    background: #e8e1ff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #d16ba5, #8e7cff);
+    transition: width 0.4s ease;
+}
+
+/* ===== STEPS ===== */
+.progress-steps {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+}
+
+.progress-steps span {
+    width: 28px;
+    height: 28px;
+    background: #fff;
+    border: 2px solid #b9aaff;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 24px;
+    font-size: 14px;
+    color: #6a5acd;
+    font-weight: bold;
+}
+
+.progress-text {
+    margin-top: 12px;
+    color: #444;
+    font-size: 15px;
+}
