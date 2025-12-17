@@ -1,212 +1,184 @@
+/* ======================
+   ПЕРЕМЕННЫЕ ЦВЕТОВ
+====================== */
+:root {
+    --color-primary: #F297A0;    /* Primrose Garden */
+    --color-secondary: #F9D0CE;  /* Pinktone */
+    --color-accent: #B6BB79;    /* Lime Lollipop */
+    --color-bg: #F3EBD8;        /* Yucca White */
+
+    --color-text-dark: #3a2f2f;
+    --color-text-light: #6b5a5a;
+}
+
+/* ======================
+   BASE
+====================== */
 * {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
-    font-family: "Segoe UI", Arial, sans-serif;
 }
 
 body {
-    background: #faf7ff;
-    color: #2f2c3d;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--color-bg);
+    color: var(--color-text-dark);
+    line-height: 1.6;
 }
 
-/* ===== TOP BAR ===== */
+a {
+    text-decoration: none;
+    color: var(--color-text-dark);
+}
+
+/* ======================
+   TOP BAR
+====================== */
 .top-bar {
-    background: linear-gradient(90deg, #f2c1ff, #c7b9ff);
+    background: var(--color-primary);
+    color: #fff;
     text-align: center;
     padding: 8px;
     font-size: 14px;
-    color: #1f1c2e;
 }
 
-/* ===== HEADER ===== */
+/* ======================
+   HEADER
+====================== */
 .header {
-    background: #ffffff;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 22px 40px;
-    box-shadow: 0 8px 24px rgba(60,50,90,0.15);
+    padding: 16px 24px;
+    background: #fff;
+    border-bottom: 3px solid var(--color-secondary);
 }
 
 .header-left {
     display: flex;
     align-items: center;
-    gap: 12px;
-}
-
-.logo {
-    width: 46px;
-    height: 46px;
-    border-radius: 14px;
-    background: linear-gradient(135deg, #e38ecf, #9b7cff);
-    color: #ffffff;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .site-name {
+    font-weight: bold;
     font-size: 18px;
-    font-weight: 700;
-    color: #1f1c2e;
 }
 
-/* ===== MENU ===== */
+/* ======================
+   LOGO (CSS)
+====================== */
+.logo {
+    width: 44px;
+    height: 44px;
+    background: var(--color-primary);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+/* ======================
+   MENU
+====================== */
 .menu a {
-    margin-left: 28px;
-    text-decoration: none;
-    font-weight: 600;
-    color: #5f5b77;
+    margin-left: 16px;
+    font-weight: 500;
 }
 
 .menu a:hover {
-    color: #9b7cff;
+    color: var(--color-primary);
 }
 
-/* ===== MAIN ===== */
+/* ======================
+   CONTENT
+====================== */
 .content {
-    max-width: 1200px;
-    margin: 60px auto;
-    padding: 0 25px;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 30px 20px;
 }
 
-/* ===== IMAGE ROW ===== */
+/* ======================
+   IMAGE ROW
+====================== */
 .image-row {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 28px;
-    margin-bottom: 50px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
 }
 
 .image-row img {
     width: 100%;
-    border-radius: 22px;
-    box-shadow: 0 14px 30px rgba(60,50,90,0.18);
+    border-radius: 18px;
 }
 
-/* ===== TEXT BLOCK ===== */
+/* ======================
+   TEXT BLOCK
+====================== */
 .text-block {
-    background: #ffffff;
-    padding: 40px;
-    border-radius: 26px;
-    box-shadow: 0 16px 36px rgba(60,50,90,0.16);
-    margin-bottom: 70px;
+    margin: 40px 0;
+    background: #fff;
+    padding: 24px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
 }
 
-.text-block p {
-    margin-bottom: 18px;
-    line-height: 1.8;
-    color: #5f5b77;
-    font-size: 16px;
-}
-
-/* ===== SKILLS ===== */
+/* ======================
+   SKILLS
+====================== */
 .skills h2 {
     text-align: center;
-    font-size: 32px;
-    color: #1f1c2e;
-    margin-bottom: 45px;
+    margin-bottom: 30px;
 }
 
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 32px;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
 }
 
 .skill-card {
-    background: #ffffff;
-    padding: 35px 28px;
-    border-radius: 28px;
-    box-shadow: 0 16px 36px rgba(60,50,90,0.18);
+    background: #fff;
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    transition: transform 0.3s;
+}
+
+.skill-card:hover {
+    transform: translateY(-6px);
 }
 
 .skill-icon {
-    width: 62px;
-    height: 62px;
-    border-radius: 18px;
-    margin-bottom: 18px;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    margin: 0 auto 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #ffffff;
     font-size: 22px;
 }
 
-.icon-pink { background: #e38ecf; }
-.icon-purple { background: #9b7cff; }
-
-.skill-card h3 {
-    margin-bottom: 10px;
-    color: #1f1c2e;
+.icon-pink {
+    background: var(--color-secondary);
 }
 
-.skill-card p {
-    color: #5f5b77;
-    font-size: 15px;
+.icon-purple {
+    background: var(--color-primary);
 }
 
-/* ===== CTA ===== */
-.cta {
-    background: linear-gradient(135deg, #f2c1ff, #c7b9ff);
-    padding: 75px 20px;
-    text-align: center;
+.icon-soft {
+    background: var(--color-accent);
 }
 
-.cta h2 {
-    font-size: 34px;
-    color: #1f1c2e;
-    margin-bottom: 14px;
-}
-
-.cta p {
-    font-size: 17px;
-    color: #2f2c3d;
-    margin-bottom: 28px;
-}
-
-.cta-buttons a {
-    padding: 14px 28px;
-    border-radius: 18px;
-    margin: 6px;
-    text-decoration: none;
-    font-weight: 700;
-}
-
-.btn-light {
-    background: #ffffff;
-    color: #9b7cff;
-}
-
-.btn-outline {
-    border: 2px solid #ffffff;
-    color: #ffffff;
-}
-
-/* ===== FOOTER ===== */
-.footer {
-    background: #ffffff;
-    padding: 20px;
-    text-align: center;
-    color: #5f5b77;
-    font-size: 14px;
-}
-
-/* ===== ADAPTIVE ===== */
-@media (max-width: 900px) {
-    .image-row {
-        grid-template-columns: 1fr;
-    }
-
-    .header {
-        flex-direction: column;
-        gap: 16px;
-    }
-}
-
-/* ===== TASKS ===== */
+/* ======================
+   TASKS
+====================== */
 .tasks-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -215,26 +187,25 @@ body {
 }
 
 .task-card {
-    background: #ffffff;
-    border-radius: 16px;
+    background: #fff;
+    border-radius: 20px;
     padding: 16px;
-    box-shadow: 0 10px 25px rgba(120, 90, 200, 0.15);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
     display: flex;
     flex-direction: column;
     cursor: pointer;
-    transition: transform 0.3s, box-shadow 0.3s;
     position: relative;
+    transition: transform 0.3s;
 }
 
 .task-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 16px 40px rgba(120, 90, 200, 0.25);
 }
 
 .task-image {
     height: 120px;
-    background: #f3f1ff;
-    border-radius: 12px;
+    background: var(--color-secondary);
+    border-radius: 14px;
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -248,9 +219,9 @@ body {
 }
 
 .css-preview {
-    font-weight: bold;
     font-size: 32px;
-    color: #6c5ce7;
+    font-weight: bold;
+    color: var(--color-text-dark);
 }
 
 .task-info {
@@ -258,16 +229,15 @@ body {
 }
 
 .task-info h3 {
-    margin-bottom: 6px;
-    color: #3d2c6e;
+    margin: 0 0 6px;
 }
 
 .task-info p {
     font-size: 14px;
-    color: #555;
+    color: var(--color-text-light);
 }
 
-/* ===== CHECKBOX ===== */
+/* checkbox */
 .task-check {
     position: absolute;
     top: 16px;
@@ -275,47 +245,16 @@ body {
     transform: scale(1.3);
 }
 
-/* ===== PROGRESS ===== */
-.progress-section {
-    margin-top: 40px;
-}
-
-.progress-bar {
-    height: 12px;
-    background: #e6e0ff;
-    border-radius: 6px;
-    overflow: hidden;
-    margin: 12px 0;
-}
-
-.progress-fill {
-    height: 100%;
-    width: 0%;
-    background: linear-gradient(90deg, #c77dff, #7b5cff);
-    transition: width 0.4s;
-}
-
-/* ===== CSS-only progress logic ===== */
-.task-check:nth-of-type(1):checked ~ .progress-section .progress-fill { width: 20%; }
-.task-check:nth-of-type(2):checked ~ .progress-section .progress-fill { width: 40%; }
-.task-check:nth-of-type(3):checked ~ .progress-section .progress-fill { width: 60%; }
-.task-check:nth-of-type(4):checked ~ .progress-section .progress-fill { width: 80%; }
-.task-check:nth-of-type(5):checked ~ .progress-section .progress-fill { width: 100%; }
-
-
-/* ===== PROGRESS ===== */
+/* ======================
+   PROGRESS
+====================== */
 .progress-section {
     margin: 50px 0;
 }
 
-.progress-wrapper {
-    position: relative;
-    margin-top: 20px;
-}
-
 .progress-bar {
     height: 14px;
-    background: #e8e1ff;
+    background: var(--color-secondary);
     border-radius: 8px;
     overflow: hidden;
 }
@@ -323,11 +262,14 @@ body {
 .progress-fill {
     height: 100%;
     width: 0%;
-    background: linear-gradient(90deg, #d16ba5, #8e7cff);
+    background: linear-gradient(
+        90deg,
+        var(--color-primary),
+        var(--color-accent)
+    );
     transition: width 0.4s ease;
 }
 
-/* ===== STEPS ===== */
 .progress-steps {
     display: flex;
     justify-content: space-between;
@@ -338,17 +280,62 @@ body {
     width: 28px;
     height: 28px;
     background: #fff;
-    border: 2px solid #b9aaff;
+    border: 2px solid var(--color-primary);
     border-radius: 50%;
     text-align: center;
     line-height: 24px;
     font-size: 14px;
-    color: #6a5acd;
     font-weight: bold;
 }
 
-.progress-text {
-    margin-top: 12px;
-    color: #444;
-    font-size: 15px;
+/* ======================
+   CTA
+====================== */
+.cta {
+    background: var(--color-primary);
+    color: #fff;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.cta-buttons {
+    margin-top: 20px;
+}
+
+.btn-light,
+.btn-outline {
+    display: inline-block;
+    margin: 6px;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.btn-light {
+    background: #fff;
+    color: var(--color-primary);
+}
+
+.btn-outline {
+    border: 2px solid #fff;
+    color: #fff;
+}
+
+/* ======================
+   FOOTER
+====================== */
+.footer {
+    background: var(--color-secondary);
+    text-align: center;
+    padding: 16px;
+    margin-top: 40px;
+}
+
+/* ======================
+   ADAPTIVE
+====================== */
+@media (max-width: 768px) {
+    .menu {
+        display: none;
+    }
 }
