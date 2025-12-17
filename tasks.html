@@ -31,45 +31,85 @@
 <h1>Учебные задания</h1>
 
 <div class="text-block">
-<p>
-В этом разделе представлены задания, выполненные в рамках курса по веб-разработке.
-Каждое задание направлено на формирование практических навыков создания современных
-веб-сайтов с использованием HTML и CSS без применения табличной верстки.
-</p>
-
-<p>
-В процессе выполнения заданий особое внимание уделялось структуре документа,
-семантической разметке, адаптивности интерфейса и визуальной целостности дизайна.
-Все проекты оформлены в едином стиле и корректно отображаются на различных устройствах.
-</p>
-
-<p>
-Данный раздел демонстрирует постепенное усложнение задач и рост уровня владения
-инструментами фронтенд-разработки.
-</p>
+    <p>
+        В этом разделе представлены задания, выполненные в рамках курса по веб-разработке.
+        Каждое задание направлено на закрепление практических навыков работы с HTML, CSS
+        и принципами адаптивной верстки.
+    </p>
+    <p>
+        Ниже расположен список заданий с кратким описанием и визуальными превью.
+        Также реализован трекер выполнения, позволяющий отслеживать прогресс.
+    </p>
 </div>
 
-<div class="skills-grid">
-    <div class="skill-card">
-        <h3>Задание 1</h3>
-        <p>Создание базовой HTML-страницы с header, main и footer.</p>
-    </div>
 
-    <div class="skill-card">
-        <h3>Задание 2</h3>
-        <p>Многостраничный сайт с навигацией и связанными страницами.</p>
+<section class="progress-section">
+    <h2>Прогресс выполнения</h2>
+    <div class="progress-bar">
+        <div class="progress-fill"></div>
     </div>
+    <p class="progress-text">Отметьте выполненные задания</p>
+</section>
 
-    <div class="skill-card">
-        <h3>Задание 3</h3>
-        <p>Адаптивная верстка с использованием Flexbox и Grid.</p>
-    </div>
 
-    <div class="skill-card">
-        <h3>Задание 4</h3>
-        <p>Создание собственного дизайна и CSS-логотипа.</p>
-    </div>
-</div>
+<section class="tasks-grid">
+
+    <label class="task-card">
+        <input type="checkbox" class="task-check">
+        <div class="task-image">
+            <img src="https://picsum.photos/200/120?1" alt="">
+        </div>
+        <div class="task-info">
+            <h3>Задание 1</h3>
+            <p>Верстка многостраничного сайта. Структура, header, footer, меню.</p>
+        </div>
+    </label>
+
+    <label class="task-card">
+        <input type="checkbox" class="task-check">
+        <div class="task-image">
+            <div class="css-preview">CSS</div>
+        </div>
+        <div class="task-info">
+            <h3>Задание 2</h3>
+            <p>Создание рисунка средствами CSS без изображений.</p>
+        </div>
+    </label>
+
+    <label class="task-card">
+        <input type="checkbox" class="task-check">
+        <div class="task-image">
+            <img src="https://picsum.photos/200/120?3" alt="">
+        </div>
+        <div class="task-info">
+            <h3>Задание 3</h3>
+            <p>Flexbox: построение адаптивных сеток и карточек.</p>
+        </div>
+    </label>
+
+    <label class="task-card">
+        <input type="checkbox" class="task-check">
+        <div class="task-image">
+            <img src="https://picsum.photos/200/120?4" alt="">
+        </div>
+        <div class="task-info">
+            <h3>Задание 4</h3>
+            <p>Работа с DOM. Интерактивные элементы интерфейса.</p>
+        </div>
+    </label>
+
+    <label class="task-card">
+        <input type="checkbox" class="task-check">
+        <div class="task-image">
+            <img src="https://picsum.photos/200/120?5" alt="">
+        </div>
+        <div class="task-info">
+            <h3>Задание 5</h3>
+            <p>Перетаскивание объектов и пользовательские события.</p>
+        </div>
+    </label>
+
+</section>
 
 </main>
 
