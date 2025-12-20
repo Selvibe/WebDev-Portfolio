@@ -1,19 +1,14 @@
-/* ======================
-   ПЕРЕМЕННЫЕ ЦВЕТОВ
-====================== */
 :root {
-    --color-primary: #F297A0;    /* Primrose Garden */
-    --color-secondary: #F9D0CE;  /* Pinktone */
-    --color-accent: #B6BB79;    /* Lime Lollipop */
-    --color-bg: #F3EBD8;        /* Yucca White */
+    --color-primary: #F297A0;
+    --color-secondary: #F9D0CE;
+    --color-accent: #B6BB79;
+    --color-bg: #F3EBD8;
 
-    --color-text-dark: #3a2f2f;
-    --color-text-light: #6b5a5a;
+    --text-dark: #3a2f2f;
+    --text-light: #6b5a5a;
 }
 
-/* ======================
-   BASE
-====================== */
+/* BASE */
 * {
     box-sizing: border-box;
 }
@@ -22,18 +17,15 @@ body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
     background: var(--color-bg);
-    color: var(--color-text-dark);
-    line-height: 1.6;
+    color: var(--text-dark);
 }
 
 a {
     text-decoration: none;
-    color: var(--color-text-dark);
+    color: var(--text-dark);
 }
 
-/* ======================
-   TOP BAR
-====================== */
+/* TOP BAR */
 .top-bar {
     background: var(--color-primary);
     color: #fff;
@@ -42,68 +34,107 @@ a {
     font-size: 14px;
 }
 
-/* ======================
-   HEADER
-====================== */
+/* HEADER */
 .header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: linear-gradient(90deg, #fff, var(--color-secondary));
+    padding: 18px 28px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 16px 24px;
-    background: #fff;
-    border-bottom: 3px solid var(--color-secondary);
+    border-bottom: 4px solid var(--color-primary);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
 }
 
 .header-left {
     display: flex;
     align-items: center;
+    gap: 14px;
 }
 
-.site-name {
-    font-weight: bold;
-    font-size: 18px;
-}
-
-/* ======================
-   LOGO (CSS)
-====================== */
+/* LOGO */
 .logo {
-    width: 44px;
-    height: 44px;
-    background: var(--color-primary);
-    color: #fff;
-    border-radius: 50%;
+    width: 56px;
+    height: 56px;
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: bold;
-    margin-right: 10px;
 }
 
-/* ======================
-   MENU
-====================== */
-.menu a {
-    margin-left: 16px;
-    font-weight: 500;
+.logo-circle {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    border-radius: 50%;
 }
 
-.menu a:hover {
+.logo-circle::after {
+    content: "";
+    position: absolute;
+    inset: 6px;
+    background: #fff;
+    border-radius: 50%;
+}
+
+.logo-letter {
+    position: relative;
+    font-weight: 800;
+    font-size: 18px;
     color: var(--color-primary);
 }
 
-/* ======================
-   CONTENT
-====================== */
+/* TITLE */
+.site-title {
+    display: flex;
+    flex-direction: column;
+}
+
+.site-name {
+    font-weight: 700;
+}
+
+.site-subtitle {
+    font-size: 12px;
+    color: var(--text-light);
+}
+
+/* MENU DESKTOP */
+.menu {
+    display: flex;
+    gap: 24px;
+}
+
+.menu a {
+    font-weight: 500;
+}
+
+/* BURGER */
+.burger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.burger span {
+    width: 26px;
+    height: 3px;
+    background: var(--text-dark);
+    border-radius: 3px;
+}
+
+/* CONTENT */
 .content {
     max-width: 1100px;
     margin: 0 auto;
     padding: 30px 20px;
 }
 
-/* ======================
-   IMAGE ROW
-====================== */
 .image-row {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -115,9 +146,6 @@ a {
     border-radius: 18px;
 }
 
-/* ======================
-   TEXT BLOCK
-====================== */
 .text-block {
     margin: 40px 0;
     background: #fff;
@@ -126,138 +154,132 @@ a {
     box-shadow: 0 8px 20px rgba(0,0,0,0.08);
 }
 
-/* ======================
-   SKILLS
-====================== */
-.skills h2 {
+/* FOOTER */
+.footer {
+    background: var(--color-secondary);
     text-align: center;
-    margin-bottom: 30px;
+    padding: 16px;
+    margin-top: 40px;
 }
 
+/* MOBILE */
+@media (max-width: 768px) {
+
+    .burger {
+        display: flex;
+    }
+
+    .menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        flex-direction: column;
+        padding: 10px 0;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        border-radius: 0 0 16px 16px;
+    }
+
+    .menu.active {
+        display: flex;
+    }
+
+    .menu a {
+        padding: 14px 20px;
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+}
+
+
+/* ======================
+   SKILLS SECTION
+====================== */
+.skills {
+    margin: 60px 0;
+}
+
+.skills h2 {
+    text-align: center;
+    margin-bottom: 32px;
+    font-size: 26px;
+}
+
+/* сетка карточек */
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 24px;
 }
 
+/* карточка */
 .skill-card {
-    background: #fff;
+    background: #ffffff;
     border-radius: 20px;
-    padding: 20px;
+    padding: 24px 20px;
     text-align: center;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-    transition: transform 0.3s;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .skill-card:hover {
     transform: translateY(-6px);
+    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.12);
 }
 
+/* иконка */
 .skill-icon {
-    width: 52px;
-    height: 52px;
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 14px;
     border-radius: 50%;
-    margin: 0 auto 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 22px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
 }
 
+/* цвета иконок */
 .icon-pink {
-    background: var(--color-secondary);
+    background: var(--color-primary);
 }
 
 .icon-purple {
-    background: var(--color-primary);
+    background: #b28ac7;
 }
 
 .icon-soft {
     background: var(--color-accent);
 }
 
-/* ======================
-   TASKS
-====================== */
-.tasks-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 24px;
-    margin-top: 40px;
+/* заголовок */
+.skill-card h3 {
+    margin: 10px 0 8px;
+    font-size: 18px;
 }
 
-.task-card {
-    background: #fff;
-    border-radius: 20px;
-    padding: 16px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-    display: flex;
-    flex-direction: column;
-    cursor: pointer;
-    position: relative;
-    transition: transform 0.3s;
-}
-
-.task-card:hover {
-    transform: translateY(-6px);
-}
-
-.task-image {
-    height: 120px;
-    background: var(--color-secondary);
-    border-radius: 14px;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.task-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.css-preview {
-    font-size: 32px;
-    font-weight: bold;
-    color: var(--color-text-dark);
-}
-
-.task-info {
-    margin-top: 12px;
-}
-
-.task-info h3 {
-    margin: 0 0 6px;
-}
-
-.task-info p {
+/* текст */
+.skill-card p {
     font-size: 14px;
     color: var(--color-text-light);
-}
-
-/* checkbox */
-.task-check {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    transform: scale(1.3);
+    line-height: 1.5;
 }
 
 /* ======================
-   PROGRESS
+   TASKS PAGE
 ====================== */
-.progress-section {
-    margin: 50px 0;
+
+
+
+.progress-wrapper {
+    max-width: 520px;
+    margin: 0 auto;
 }
 
-.progress-bar {
-    height: 14px;
-    background: var(--color-secondary);
-    border-radius: 8px;
-    overflow: hidden;
-}
+
 
 .progress-fill {
     height: 100%;
@@ -270,72 +292,193 @@ a {
     transition: width 0.4s ease;
 }
 
-.progress-steps {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 8px;
-}
+
 
 .progress-steps span {
     width: 28px;
     height: 28px;
-    background: #fff;
-    border: 2px solid var(--color-primary);
+    background: var(--color-secondary);
     border-radius: 50%;
-    text-align: center;
-    line-height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.progress-text {
+    margin-top: 18px;
     font-size: 14px;
-    font-weight: bold;
+    color: var(--text-light);
+}
+
+/* сетка заданий */
+.tasks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 26px;
+    margin: 50px 0;
+}
+
+/* карточка задания */
+.task-card {
+    background: #ffffff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.task-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 30px rgba(0,0,0,0.12);
+}
+
+/* скрываем чекбокс */
+.task-card input {
+    display: none;
+}
+
+/* изображение */
+.task-image img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+}
+
+/* информация */
+.task-info {
+    padding: 18px 18px 22px;
+}
+
+.task-info h3 {
+    margin: 0 0 8px;
+    font-size: 18px;
+}
+
+.task-info p {
+    font-size: 14px;
+    color: var(--text-light);
+    line-height: 1.5;
+}
+
+/* выполнено */
+.task-check:checked ~ .task-image img {
+    filter: grayscale(100%) brightness(0.9);
+}
+
+.task-check:checked ~ .task-info {
+    opacity: 0.6;
+}
+
+.task-check:checked ~ .task-info h3::after {
+    content: " ✔";
+    color: var(--color-accent);
+}
+
+/* мобильная адаптация */
+@media (max-width: 600px) {
+    .task-image img {
+        height: 120px;
+    }
 }
 
 /* ======================
-   CTA
+   TASK PROGRESS BAR
 ====================== */
-.cta {
+
+.progress-section {
+    margin: 60px 0;
+    background: #ffffff;
+    padding: 32px 26px;
+    border-radius: 22px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    text-align: center;
+}
+
+.progress-section h2 {
+    margin-bottom: 10px;
+}
+
+/* контейнер */
+.progress-wrapper {
+    max-width: 540px;
+    margin: 0 auto;
+}
+
+/* полоса */
+.progress-bar {
+    position: relative;
+    width: 100%;
+    height: 18px;
+    background: #eee;
+    border-radius: 14px;
+    overflow: hidden;
+    margin: 22px 0 12px;
+}
+
+/* заполнение */
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(
+        90deg,
+        var(--color-primary),
+        var(--color-accent)
+    );
+    border-radius: 14px;
+    transition: width 0.5s ease;
+}
+
+/* проценты */
+.progress-bar::after {
+    content: attr(data-percent);
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 12px;
+    font-weight: 600;
+    color: #fff;
+    pointer-events: none;
+}
+
+/* шаги */
+.progress-steps {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 18px;
+    padding: 0 4px;
+}
+
+.progress-steps span {
+    width: 30px;
+    height: 30px;
+    background: #e0e0e0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-dark);
+    transition: all 0.3s ease;
+}
+
+/* выполненный шаг */
+.progress-steps span.active {
     background: var(--color-primary);
     color: #fff;
-    text-align: center;
-    padding: 40px 20px;
+    box-shadow: 0 0 0 4px rgba(242,151,160,0.25);
 }
 
-.cta-buttons {
+/* текст */
+.progress-text {
     margin-top: 20px;
-}
-
-.btn-light,
-.btn-outline {
-    display: inline-block;
-    margin: 6px;
-    padding: 10px 20px;
-    border-radius: 20px;
-    font-weight: bold;
-}
-
-.btn-light {
-    background: #fff;
-    color: var(--color-primary);
-}
-
-.btn-outline {
-    border: 2px solid #fff;
-    color: #fff;
-}
-
-/* ======================
-   FOOTER
-====================== */
-.footer {
-    background: var(--color-secondary);
-    text-align: center;
-    padding: 16px;
-    margin-top: 40px;
-}
-
-/* ======================
-   ADAPTIVE
-====================== */
-@media (max-width: 768px) {
-    .menu {
-        display: none;
-    }
+    font-size: 14px;
+    color: var(--text-light);
 }

@@ -8,30 +8,62 @@
 </head>
 <body>
 
+<div class="top-bar">
+    Учебные проекты
+</div>
+
 <header class="header">
-    <div class="logo">WD</div>
-    <nav class="menu">
+    <div class="header-left">
+        <div class="logo">
+            <div class="logo-circle"></div>
+            <div class="logo-letter">WD</div>
+        </div>
+
+        <div class="site-title">
+            <span class="site-name">WebDev Portfolio</span>
+            <span class="site-subtitle">Frontend student</span>
+        </div>
+    </div>
+
+    <button class="burger" id="burgerBtn">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <nav class="menu" id="mobileMenu">
         <a href="index.html">Главная</a>
         <a href="tasks.html">Задания</a>
-        <a href="course.html">Курсовая работа</a>
+        <a href="course.html">Курсовая</a>
         <a href="about.html">О себе</a>
     </nav>
 </header>
 
 <main class="content">
-    <h1>Учебные проекты</h1>
 
-    <ul class="project-list">
-        <li>Адаптивная верстка сайта</li>
-        <li>Многостраничный HTML-проект</li>
-        <li>CSS-анимации и эффекты</li>
-        <li>Подготовка сайта к серверной части</li>
-    </ul>
+    <section class="text-block">
+        <h2>Учебные проекты</h2>
+
+        <p>
+            В данном разделе собраны проекты, выполненные в процессе обучения.
+            Они демонстрируют постепенное усложнение задач и рост практических навыков
+            в области веб-разработки.
+        </p>
+
+        <ul>
+            <li>Адаптивная верстка сайта</li>
+            <li>Многостраничный HTML-проект</li>
+            <li>CSS-анимации и визуальные эффекты</li>
+            <li>Подготовка сайта к серверной части</li>
+        </ul>
+    </section>
+
 </main>
 
 <footer class="footer">
-    <p>© 2025 WebDev Portfolio</p>
+    © 2025 WebDev Portfolio
 </footer>
 
+<script src="js/menu.js"></script>
 </body>
 </html>

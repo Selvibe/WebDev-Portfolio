@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Курсовая работа | WebDev Portfolio</title>
+    <title>Курсовая | WebDev Portfolio</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -14,52 +14,60 @@
 
 <header class="header">
     <div class="header-left">
-        <div class="logo">WD</div>
-        <span class="site-name">WebDev Portfolio</span>
+        <div class="logo">
+            <div class="logo-circle"></div>
+            <div class="logo-letter">WD</div>
+        </div>
+
+        <div class="site-title">
+            <span class="site-name">WebDev Portfolio</span>
+            <span class="site-subtitle">Frontend student</span>
+        </div>
     </div>
 
-    <nav class="menu">
+    <button class="burger" id="burgerBtn">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <nav class="menu" id="mobileMenu">
         <a href="index.html">Главная</a>
         <a href="tasks.html">Задания</a>
-        <a href="course.html">Курсовая работа</a>
+        <a href="course.html">Курсовая</a>
         <a href="about.html">О себе</a>
     </nav>
 </header>
 
 <main class="content">
 
-<h1>Курсовая работа</h1>
+    <section class="text-block">
+        <h2>Описание курсовой работы</h2>
 
-<div class="text-block">
-<p>
-Курсовая работа представляет собой адаптивный многостраничный веб-сайт,
-выполненный с использованием чистых HTML и CSS. Целью курсовой является
-закрепление навыков проектирования структуры сайта и визуального оформления интерфейса.
-</p>
+        <p>
+            Курсовая работа представляет собой адаптивный многостраничный веб-сайт,
+            выполненный с использованием чистых HTML и CSS. Основной целью проекта
+            является закрепление навыков верстки, проектирования структуры сайта
+            и оформления пользовательского интерфейса.
+        </p>
 
-<p>
-В рамках проекта были реализованы обязательные элементы сайта: шапка,
-навигационное меню, основная часть контента, подвал и собственный логотип,
-созданный средствами CSS. Все страницы оформлены в едином стиле и связаны между собой.
-</p>
+        <p>
+            В рамках курсовой реализованы обязательные элементы сайта: шапка,
+            навигационное меню, основная часть контента, подвал и собственный логотип,
+            выполненный средствами CSS без использования графических редакторов.
+        </p>
 
-<p>
-Особое внимание уделено адаптивности и удобству чтения контента.
-Используется мягкая цветовая палитра с достаточной контрастностью,
-что делает сайт комфортным для восприятия.
-</p>
+        <p>
+            Проект может быть расширен и использован в дальнейшем для изучения
+            серверного программирования, работы с базами данных и динамического контента.
+        </p>
+    </section>
 
-<p>
-Проект может быть использован как основа для дальнейшего изучения серверного
-программирования, добавления динамического контента и работы с базами данных.
-</p>
-</div>
-
-<div class="image-row">
-    <img src="https://picsum.photos/500/350?20">
-    <img src="https://picsum.photos/500/350?21">
-    <img src="https://picsum.photos/500/350?22">
-</div>
+    <section class="image-row">
+        <img src="https://picsum.photos/500/350?20" alt="">
+        <img src="https://picsum.photos/500/350?21" alt="">
+        <img src="https://picsum.photos/500/350?22" alt="">
+    </section>
 
 </main>
 
@@ -67,5 +75,6 @@
     © 2025 WebDev Portfolio
 </footer>
 
+<script src="js/menu.js"></script>
 </body>
 </html>
