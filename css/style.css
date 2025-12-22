@@ -1,14 +1,18 @@
 :root {
-    --color-primary: #F297A0;
-    --color-secondary: #F9D0CE;
-    --color-accent: #B6BB79;
-    --color-bg: #F3EBD8;
+    /* Палитра */
+    --color-primary: #D183A9;
+    --color-secondary: #F3C8DD;
+    --color-accent: #71557A;
+    --color-bg: #F7EEF3;
 
-    --text-dark: #3a2f2f;
-    --text-light: #6b5a5a;
+    --text-dark: #3A345B;
+    --text-light: #71557A;
+    --color-strong: #4B1535;
 }
 
-/* BASE */
+/* ======================
+   BASE
+====================== */
 * {
     box-sizing: border-box;
 }
@@ -22,77 +26,101 @@ body {
 
 a {
     text-decoration: none;
-    color: var(--text-dark);
+    color: inherit;
 }
 
-/* TOP BAR */
+/* ======================
+   TOP BAR
+====================== */
 .top-bar {
-    background: var(--color-primary);
+    background: var(--color-strong);
     color: #fff;
     text-align: center;
     padding: 8px;
     font-size: 14px;
 }
 
-/* HEADER */
+/* ======================
+   HEADER
+====================== */
 .header {
     position: sticky;
     top: 0;
-    z-index: 100;
-    background: linear-gradient(90deg, #fff, var(--color-secondary));
-    padding: 18px 28px;
+    z-index: 1000;
+
+    background: linear-gradient(
+        90deg,
+        #ffffff 0%,
+        var(--color-secondary) 60%,
+        rgba(243,200,221,0.7) 100%
+    );
+
+    padding: 16px 28px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 4px solid var(--color-primary);
-    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+
+    box-shadow: 0 10px 30px rgba(58,52,91,0.08);
 }
 
+/* LEFT */
 .header-left {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 16px;
 }
 
-/* LOGO */
 .logo {
     width: 56px;
     height: 56px;
     position: relative;
+    flex-shrink: 0;
+
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
+
 .logo-circle {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
     border-radius: 50%;
+    background: linear-gradient(
+        135deg,
+        var(--color-primary),
+        var(--color-accent)
+    );
+    box-shadow: 0 8px 18px rgba(75,21,53,0.25);
 }
 
 .logo-circle::after {
     content: "";
     position: absolute;
-    inset: 6px;
+    inset: 7px;
     background: #fff;
     border-radius: 50%;
 }
 
 .logo-letter {
     position: relative;
+    font-size: 17px;
     font-weight: 800;
-    font-size: 18px;
-    color: var(--color-primary);
+    letter-spacing: 1px;
+    color: var(--color-strong);
+    line-height: 1;
 }
+
 
 /* TITLE */
 .site-title {
     display: flex;
     flex-direction: column;
+    line-height: 1.2;
 }
 
 .site-name {
+    font-size: 17px;
     font-weight: 700;
 }
 
@@ -101,17 +129,43 @@ a {
     color: var(--text-light);
 }
 
-/* MENU DESKTOP */
+/* ======================
+   MENU
+====================== */
 .menu {
     display: flex;
-    gap: 24px;
+    gap: 26px;
 }
 
 .menu a {
-    font-weight: 500;
+    position: relative;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 6px 0;
 }
 
-/* BURGER */
+.menu a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 2px;
+    background: var(--color-primary);
+    transition: width 0.3s ease;
+}
+
+.menu a:hover {
+    color: var(--color-strong);
+}
+
+.menu a:hover::after {
+    width: 100%;
+}
+
+/* ======================
+   BURGER
+====================== */
 .burger {
     display: none;
     background: none;
@@ -128,7 +182,9 @@ a {
     border-radius: 3px;
 }
 
-/* CONTENT */
+/* ======================
+   CONTENT
+====================== */
 .content {
     max-width: 1100px;
     margin: 0 auto;
@@ -154,81 +210,32 @@ a {
     box-shadow: 0 8px 20px rgba(0,0,0,0.08);
 }
 
-/* FOOTER */
-.footer {
-    background: var(--color-secondary);
-    text-align: center;
-    padding: 16px;
-    margin-top: 40px;
-}
-
-/* MOBILE */
-@media (max-width: 768px) {
-
-    .burger {
-        display: flex;
-    }
-
-    .menu {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: #fff;
-        flex-direction: column;
-        padding: 10px 0;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-        border-radius: 0 0 16px 16px;
-    }
-
-    .menu.active {
-        display: flex;
-    }
-
-    .menu a {
-        padding: 14px 20px;
-        border-bottom: 1px solid rgba(0,0,0,0.1);
-    }
-}
-
-
 /* ======================
-   SKILLS SECTION
+   SKILLS
 ====================== */
 .skills {
     margin: 60px 0;
 }
 
-.skills h2 {
-    text-align: center;
-    margin-bottom: 32px;
-    font-size: 26px;
-}
-
-/* сетка карточек */
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 24px;
 }
 
-/* карточка */
 .skill-card {
-    background: #ffffff;
+    background: #fff;
     border-radius: 20px;
-    padding: 24px 20px;
+    padding: 24px;
     text-align: center;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
 }
 
 .skill-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.12);
 }
 
-/* иконка */
 .skill-icon {
     width: 56px;
     height: 56px;
@@ -237,100 +244,74 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 24px;
-    font-weight: bold;
     color: #fff;
+    font-size: 22px;
 }
 
-/* цвета иконок */
-.icon-pink {
-    background: var(--color-primary);
-}
+.icon-pink { background: var(--color-primary); }
+.icon-purple { background: var(--color-accent); }
+.icon-soft { background: var(--color-strong); }
 
-.icon-purple {
-    background: #b28ac7;
-}
-
-.icon-soft {
-    background: var(--color-accent);
-}
-
-/* заголовок */
-.skill-card h3 {
-    margin: 10px 0 8px;
-    font-size: 18px;
-}
-
-/* текст */
-.skill-card p {
-    font-size: 14px;
-    color: var(--color-text-light);
-    line-height: 1.5;
+/* ======================
+   FOOTER
+====================== */
+.footer {
+    background: var(--color-secondary);
+    text-align: center;
+    padding: 16px;
+    margin-top: 40px;
 }
 
 /* ======================
-   TASKS PAGE
+   MOBILE
 ====================== */
+@media (max-width: 768px) {
 
+    .burger {
+        display: flex;
+    }
 
+    .menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        flex-direction: column;
+        display: none;
+        border-radius: 0 0 18px 18px;
+        box-shadow: 0 20px 35px rgba(58,52,91,0.18);
+    }
 
-.progress-wrapper {
-    max-width: 520px;
-    margin: 0 auto;
+    .menu.active {
+        display: flex;
+    }
+
+    .menu a {
+        padding: 14px 24px;
+    }
+
+    .menu a::after {
+        display: none;
+    }
 }
 
-
-
-.progress-fill {
-    height: 100%;
-    width: 0%;
-    background: linear-gradient(
-        90deg,
-        var(--color-primary),
-        var(--color-accent)
-    );
-    transition: width 0.4s ease;
-}
-
-
-
-.progress-steps span {
-    width: 28px;
-    height: 28px;
-    background: var(--color-secondary);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--text-dark);
-}
-
-.progress-text {
-    margin-top: 18px;
-    font-size: 14px;
-    color: var(--text-light);
-}
-
-/* сетка заданий */
 .tasks-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 26px;
+    gap: 28px;
     margin: 50px 0;
 }
 
-/* карточка задания */
 .task-card {
-    background: #ffffff;
+    background: #fff;
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-    cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
     flex-direction: column;
+    cursor: pointer;
 }
 
 .task-card:hover {
@@ -338,26 +319,25 @@ a {
     box-shadow: 0 16px 30px rgba(0,0,0,0.12);
 }
 
-/* скрываем чекбокс */
+/* скрытый чекбокс */
 .task-card input {
     display: none;
 }
 
-/* изображение */
 .task-image img {
     width: 100%;
-    height: 140px;
+    height: 150px;
     object-fit: cover;
 }
 
-/* информация */
 .task-info {
-    padding: 18px 18px 22px;
+    padding: 18px 20px 22px;
 }
 
 .task-info h3 {
     margin: 0 0 8px;
     font-size: 18px;
+    color: var(--text-dark);
 }
 
 .task-info p {
@@ -366,7 +346,7 @@ a {
     line-height: 1.5;
 }
 
-/* выполнено */
+/* состояние "выполнено" */
 .task-check:checked ~ .task-image img {
     filter: grayscale(100%) brightness(0.9);
 }
@@ -378,13 +358,6 @@ a {
 .task-check:checked ~ .task-info h3::after {
     content: " ✔";
     color: var(--color-accent);
-}
-
-/* мобильная адаптация */
-@media (max-width: 600px) {
-    .task-image img {
-        height: 120px;
-    }
 }
 
 /* ======================
@@ -400,11 +373,6 @@ a {
     text-align: center;
 }
 
-.progress-section h2 {
-    margin-bottom: 10px;
-}
-
-/* контейнер */
 .progress-wrapper {
     max-width: 540px;
     margin: 0 auto;
@@ -443,8 +411,7 @@ a {
     transform: translateY(-50%);
     font-size: 12px;
     font-weight: 600;
-    color: #fff;
-    pointer-events: none;
+    color: var(--color-primary);
 }
 
 /* шаги */
@@ -452,7 +419,6 @@ a {
     display: flex;
     justify-content: space-between;
     margin-top: 18px;
-    padding: 0 4px;
 }
 
 .progress-steps span {
@@ -469,16 +435,14 @@ a {
     transition: all 0.3s ease;
 }
 
-/* выполненный шаг */
 .progress-steps span.active {
     background: var(--color-primary);
     color: #fff;
-    box-shadow: 0 0 0 4px rgba(242,151,160,0.25);
+    box-shadow: 0 0 0 4px rgba(209,131,169,0.25);
 }
 
-/* текст */
 .progress-text {
-    margin-top: 20px;
+    margin-top: 18px;
     font-size: 14px;
     color: var(--text-light);
 }
