@@ -1,40 +1,36 @@
-const checkboxes = document.querySelectorAll('.task-check');
-const progressFill = document.getElementById('progressFill');
-const progressText = document.getElementById('progressText');
-const progressSteps = document.querySelectorAll('.progress-steps span');
+/* ------------------------
+   Настройки прогресса
+------------------------- */
 
-const TOTAL_TASKS = checkboxes.length;
-const STORAGE_KEY = 'tasksProgress';
+// Укажи вручную сколько заданий выполнено:
+const completedTasks = 2;  // ← меняешь только это число
 
-/* загрузка */
-const savedProgress = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+// Общее количество заданий:
+const TOTAL_TASKS = 5;
 
-checkboxes.forEach(cb => {
-    cb.checked = !!savedProgress[cb.dataset.task];
-});
 
-updateProgress();
+/* ------------------------
+   Элементы
+------------------------- */
+const progressFill = document.getElementById("progressFill");
+const progressText = document.getElementById("progressText");
+const progressSteps = document.querySelectorAll(".progress-steps span");
 
-/* сохранение */
-checkboxes.forEach(cb => {
-    cb.addEventListener('change', () => {
-        savedProgress[cb.dataset.task] = cb.checked;
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(savedProgress));
-        updateProgress();
-    });
-});
 
+/* ------------------------
+   Обновление прогресса
+------------------------- */
 function updateProgress() {
-    const completed = [...checkboxes].filter(cb => cb.checked).length;
-    const percent = Math.round((completed / TOTAL_TASKS) * 100);
+    const percent = Math.round((completedTasks / TOTAL_TASKS) * 100);
 
-    progressFill.style.width = percent + '%';
-    progressFill.parentElement.dataset.percent = percent + '%';
+    progressFill.style.width = percent + "%";
+    progressFill.parentElement.dataset.percent = percent + "%";
 
-    progressText.textContent =
-        `Выполнено заданий: ${completed} из ${TOTAL_TASKS}`;
+    progressText.textContent = `Выполнено: ${completedTasks} из ${TOTAL_TASKS}`;
 
     progressSteps.forEach((step, index) => {
-        step.classList.toggle('active', index < completed);
+        step.classList.toggle("active", index < completedTasks);
     });
 }
+
+updateProgress();

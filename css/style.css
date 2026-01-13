@@ -1,5 +1,5 @@
 :root {
-    /* Палитра */
+    /* Основная палитра */
     --color-primary: #D183A9;
     --color-secondary: #F3C8DD;
     --color-accent: #71557A;
@@ -10,9 +10,7 @@
     --color-strong: #4B1535;
 }
 
-/* ======================
-   BASE
-====================== */
+/* сброс и базовые стили */
 * {
     box-sizing: border-box;
 }
@@ -29,9 +27,7 @@ a {
     color: inherit;
 }
 
-/* ======================
-   TOP BAR
-====================== */
+/* верхняя панель */
 .top-bar {
     background: var(--color-strong);
     color: #fff;
@@ -40,57 +36,46 @@ a {
     font-size: 14px;
 }
 
-/* ======================
-   HEADER
-====================== */
+/* шапка сайта */
 .header {
     position: sticky;
     top: 0;
     z-index: 1000;
-
     background: linear-gradient(
         90deg,
         #ffffff 0%,
         var(--color-secondary) 60%,
         rgba(243,200,221,0.7) 100%
     );
-
     padding: 16px 28px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-
     box-shadow: 0 10px 30px rgba(58,52,91,0.08);
 }
 
-/* LEFT */
+/* левый блок шапки (логотип и название) */
 .header-left {
     display: flex;
     align-items: center;
     gap: 16px;
 }
 
+/* лого */
 .logo {
     width: 56px;
     height: 56px;
     position: relative;
-    flex-shrink: 0;
-
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-
 .logo-circle {
     position: absolute;
     inset: 0;
     border-radius: 50%;
-    background: linear-gradient(
-        135deg,
-        var(--color-primary),
-        var(--color-accent)
-    );
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
     box-shadow: 0 8px 18px rgba(75,21,53,0.25);
 }
 
@@ -106,13 +91,10 @@ a {
     position: relative;
     font-size: 17px;
     font-weight: 800;
-    letter-spacing: 1px;
     color: var(--color-strong);
-    line-height: 1;
 }
 
-
-/* TITLE */
+/* название сайта */
 .site-title {
     display: flex;
     flex-direction: column;
@@ -129,9 +111,7 @@ a {
     color: var(--text-light);
 }
 
-/* ======================
-   MENU
-====================== */
+/* главное меню */
 .menu {
     display: flex;
     gap: 26px;
@@ -163,9 +143,7 @@ a {
     width: 100%;
 }
 
-/* ======================
-   BURGER
-====================== */
+/* бургер-меню */
 .burger {
     display: none;
     background: none;
@@ -182,26 +160,33 @@ a {
     border-radius: 3px;
 }
 
-/* ======================
-   CONTENT
-====================== */
+/* основной контент */
 .content {
-    max-width: 1100px;
+    max-width: 1600px;
+    width: 95%;
     margin: 0 auto;
-    padding: 30px 20px;
+    padding: 40px 20px;
 }
 
+/* ряд изображений */
 .image-row {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin: 40px auto;
+    max-width: 1600px;
+    width: 95%;
 }
 
 .image-row img {
-    width: 100%;
-    border-radius: 18px;
+    width: 32%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 12px;
+    display: block;
 }
 
+/* блок текста */
 .text-block {
     margin: 40px 0;
     background: #fff;
@@ -210,9 +195,39 @@ a {
     box-shadow: 0 8px 20px rgba(0,0,0,0.08);
 }
 
-/* ======================
-   SKILLS
-====================== */
+/* список с красивыми маркерами */
+.styled-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.styled-list li {
+    position: relative;
+    padding-left: 24px;
+    font-size: 15px;
+    color: var(--text-dark);
+    transition: color 0.3s;
+}
+
+.styled-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 20px;
+    line-height: 1;
+    color: var(--color-primary);
+}
+
+.styled-list li:hover {
+    color: var(--color-strong);
+}
+
+/* секция навыков */
 .skills {
     margin: 60px 0;
 }
@@ -252,9 +267,7 @@ a {
 .icon-purple { background: var(--color-accent); }
 .icon-soft { background: var(--color-strong); }
 
-/* ======================
-   FOOTER
-====================== */
+/* Футер */
 .footer {
     background: var(--color-secondary);
     text-align: center;
@@ -262,11 +275,137 @@ a {
     margin-top: 40px;
 }
 
-/* ======================
-   MOBILE
-====================== */
-@media (max-width: 768px) {
+/* секция заданий */
+.tasks-section {
+    background: #fff;
+    padding: 50px;
+    border-radius: 26px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+    margin: 50px 0;
+}
 
+.tasks-header {
+    max-width: 1200px;
+    margin: 0 auto 40px;
+    text-align: center;
+}
+
+.tasks-header h2 {
+    margin-bottom: 12px;
+    font-size: 28px;
+}
+
+.tasks-header p {
+    font-size: 15px;
+    color: var(--text-light);
+}
+
+/* сетка заданий пинтерест*/
+.tasks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 28px;
+    justify-content: center;
+    grid-auto-flow: dense;
+    margin: 50px 0;
+}
+
+.task-card {
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.task-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 35px rgba(0,0,0,0.12);
+}
+
+.task-card input {
+    display: none;
+}
+
+.task-image img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+}
+
+.task-info {
+    padding: 18px 20px 22px;
+}
+
+.task-info h3 {
+    margin: 0 0 8px;
+    font-size: 18px;
+}
+
+.task-info p {
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+
+
+/* Прогресс */
+.progress-wrapper {
+    max-width: 1200px;
+    width: 100%;
+    margin: 40px auto;
+    text-align: center;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 18px;
+    background: #eee;
+    border-radius: 14px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 40%; /* пример */
+    background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+    transition: width 0.5s ease;
+}
+
+.progress-text {
+    margin-top: 14px;
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+.progress-steps {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 18px;
+}
+
+.progress-steps span {
+    width: 30px;
+    height: 30px;
+    background: #e0e0e0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.progress-steps span.active {
+    background: var(--color-primary);
+    color: #fff;
+    box-shadow: 0 0 0 4px rgba(209,131,169,0.25);
+}
+
+/* меню для мобильных */
+@media (max-width: 768px) {
     .burger {
         display: flex;
     }
@@ -294,155 +433,4 @@ a {
     .menu a::after {
         display: none;
     }
-}
-
-.tasks-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 28px;
-    margin: 50px 0;
-}
-
-.task-card {
-    background: #fff;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    cursor: pointer;
-}
-
-.task-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 16px 30px rgba(0,0,0,0.12);
-}
-
-/* скрытый чекбокс */
-.task-card input {
-    display: none;
-}
-
-.task-image img {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-}
-
-.task-info {
-    padding: 18px 20px 22px;
-}
-
-.task-info h3 {
-    margin: 0 0 8px;
-    font-size: 18px;
-    color: var(--text-dark);
-}
-
-.task-info p {
-    font-size: 14px;
-    color: var(--text-light);
-    line-height: 1.5;
-}
-
-/* состояние "выполнено" */
-.task-check:checked ~ .task-image img {
-    filter: grayscale(100%) brightness(0.9);
-}
-
-.task-check:checked ~ .task-info {
-    opacity: 0.6;
-}
-
-.task-check:checked ~ .task-info h3::after {
-    content: " ✔";
-    color: var(--color-accent);
-}
-
-/* ======================
-   TASK PROGRESS BAR
-====================== */
-
-.progress-section {
-    margin: 60px 0;
-    background: #ffffff;
-    padding: 32px 26px;
-    border-radius: 22px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-    text-align: center;
-}
-
-.progress-wrapper {
-    max-width: 540px;
-    margin: 0 auto;
-}
-
-/* полоса */
-.progress-bar {
-    position: relative;
-    width: 100%;
-    height: 18px;
-    background: #eee;
-    border-radius: 14px;
-    overflow: hidden;
-    margin: 22px 0 12px;
-}
-
-/* заполнение */
-.progress-fill {
-    height: 100%;
-    width: 0%;
-    background: linear-gradient(
-        90deg,
-        var(--color-primary),
-        var(--color-accent)
-    );
-    border-radius: 14px;
-    transition: width 0.5s ease;
-}
-
-/* проценты */
-.progress-bar::after {
-    content: attr(data-percent);
-    position: absolute;
-    right: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--color-primary);
-}
-
-/* шаги */
-.progress-steps {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 18px;
-}
-
-.progress-steps span {
-    width: 30px;
-    height: 30px;
-    background: #e0e0e0;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--text-dark);
-    transition: all 0.3s ease;
-}
-
-.progress-steps span.active {
-    background: var(--color-primary);
-    color: #fff;
-    box-shadow: 0 0 0 4px rgba(209,131,169,0.25);
-}
-
-.progress-text {
-    margin-top: 18px;
-    font-size: 14px;
-    color: var(--text-light);
 }

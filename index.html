@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <title>Задания | WebDev Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- сверху -->
+<div class="top-bar">
+    Раздел с учебными заданиями
+</div>
+
+<!-- шапка -->
+<header class="header">
+    <div class="header-left">
+        <div class="logo">
+            <div class="logo-circle"></div>
+            <div class="logo-letter">WD</div>
+        </div>
+
+        <div class="site-title">
+            <span class="site-name">WebDev Portfolio</span>
+            <span class="site-subtitle">Frontend student</span>
+        </div>
+    </div>
+
+    <button class="burger" id="burgerBtn">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <nav class="menu" id="mobileMenu">
+        <a href="index.html">Главная</a>
+        <a href="pages/course.html">Курсовая</a>
+        <a href="pages/about.html">О себе</a>
+    </nav>
+</header>
+
+<!-- основной контент -->
+<main class="content">
+
+    <!-- блок с текстом — такой же стиль как в about -->
+    <section class="text-block">
+     <h2>Учебные задания</h2>
+    <p>
+        В этом разделе собраны учебные задания, выполненные в процессе обучения.
+        Они показывают постепенное усложнение задач и рост практических навыков
+        в веб-разработке.
+    </p>
+
+    <ul class="styled-list">
+        <li>Адаптивная верстка сайта</li>
+        <li>Многостраничный HTML-проект</li>
+        <li>CSS-анимации и визуальные эффекты</li>
+        <li>Подготовка сайта к серверной части</li>
+    </ul>
+
+
+<br>
+    <!-- прогресс прямо внутри блока -->
+    <div class="progress-wrapper">
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <div class="progress-steps">
+            <span class="active">1</span>
+            <span class="active">2</span>
+            <span>3</span>
+            <span>4</span>
+            <span>5</span>
+        </div>
+
+        <p class="progress-text" id="progressText">
+            Выполнено: 2 из 5
+        </p>
+    </div>
+
+</section>
+
+
+    <!-- карточки заданий -->
+    <section class="tasks-section">
+        <div class="tasks-grid">
+
+            <a href="pages/tasks/task1.html" class="task-card">
+                <div class="task-image">
+                    <img src="images/task1.jpg" alt="Задание 1">
+                </div>
+                <div class="task-info">
+                    <h3>Задание 1</h3>
+                    <p>Верстка многостраничного сайта: структура, header, footer, меню.</p>
+                </div>
+            </a>
+
+            <a href="pages/tasks/task2.html" class="task-card">
+                <div class="task-image">
+                    <img src="images/task2.jpg" alt="Задание 2">
+                </div>
+                <div class="task-info">
+                    <h3>Задание 2</h3>
+                    <p>CSS-рисунки без изображений. Использование фигур и градиентов.</p>
+                </div>
+            </a>
+
+            <a href="pages/tasks/task3.html" class="task-card">
+                <div class="task-image">
+                    <img src="images/task3.jpg" alt="Задание 3">
+                </div>
+                <div class="task-info">
+                    <h3>Задание 3</h3>
+                    <p>Flexbox: адаптивные сетки и карточки.</p>
+                </div>
+            </a>
+
+            <a href="pages/tasks/task4.html" class="task-card">
+                <div class="task-image">
+                    <img src="images/task4.jpg" alt="Задание 4">
+                </div>
+                <div class="task-info">
+                    <h3>Задание 4</h3>
+                    <p>DOM. Интерактивные элементы интерфейса.</p>
+                </div>
+            </a>
+
+            <a href="pages/tasks/task5.html" class="task-card">
+                <div class="task-image">
+                    <img src="images/task5.jpg" alt="Задание 5">
+                </div>
+                <div class="task-info">
+                    <h3>Задание 5</h3>
+                    <p>События и перетаскивание элементов.</p>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
+</main>
+
+<!-- футер -->
+<footer class="footer">
+    © 2025 WebDev Portfolio
+</footer>
+
+<script src="js/menu.js"></script>
+<script src="js/progress.js"></script>
+
+</body>
+</html>
