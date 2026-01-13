@@ -1,25 +1,20 @@
-/* ------------------------
-   Настройки прогресса
-------------------------- */
 
-// Укажи вручную сколько заданий выполнено:
-const completedTasks = 2;  // ← меняешь только это число
+// вручную сколько заданий выполнено:
+const completedTasks = 2;  // менять только это число
 
-// Общее количество заданий:
+// количество заданий:
 const TOTAL_TASKS = 5;
 
 
-/* ------------------------
-   Элементы
-------------------------- */
+// элементы
+
 const progressFill = document.getElementById("progressFill");
 const progressText = document.getElementById("progressText");
 const progressSteps = document.querySelectorAll(".progress-steps span");
 
 
-/* ------------------------
-   Обновление прогресса
-------------------------- */
+//   обновление прогресса
+
 function updateProgress() {
     const percent = Math.round((completedTasks / TOTAL_TASKS) * 100);
 
