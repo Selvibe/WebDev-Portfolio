@@ -9,22 +9,14 @@
 </head>
 <body>
 
-<div class="top-bar">
-    Курсовая работа по веб-разработке
-</div>
-
 <header class="header">
-    <div class="header-left">
-        <div class="logo">
-            <div class="logo-circle"></div>
-            <div class="logo-letter">WD</div>
-        </div>
-
-        <div class="site-title">
-            <span class="site-name">WebDev Portfolio</span>
-            <span class="site-subtitle">Frontend student</span>
-        </div>
-    </div>
+<div class="logo-wd-b">
+    <span class="w1"></span>
+    <span class="w2"></span>
+    <span class="w3"></span>
+    <span class="d"></span>
+</div>
+<div class="site-name pretty-a">WebDev <span>Portfolio</span></div>
 
     <button class="burger" id="burgerBtn">
         <span></span>
@@ -33,9 +25,18 @@
     </button>
 
     <nav class="menu" id="mobileMenu">
-        <a href="../index.html">Главная</a>
-        <a href="course.html">Курсовая</a>
-        <a href="about.html">О себе</a>
+    <a href="../index.html">Главная</a>
+    <div class="dropdown">
+        <button class="drop-btn">Задания</button>
+        <div class="drop-content">
+            <a href="tasks/task1.html">Задание 1</a>
+            <a href="tasks/task2.html">Задание 2</a>
+            <a href="tasks/task3.html">Задание 3</a>
+            <a href="tasks/task4.html">Задание 4</a>
+            <a href="tasks/task5.html">Задание 5</a>
+        </div>
+    </div>
+    <a href="course.html">Курсовая</a>
     </nav>
 </header>
 

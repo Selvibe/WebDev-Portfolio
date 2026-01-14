@@ -9,24 +9,16 @@
 </head>
 <body>
 
-<!-- сверху -->
-<div class="top-bar">
-    Раздел с учебными заданиями
-</div>
-
 <!-- шапка -->
 <header class="header">
-    <div class="header-left">
-        <div class="logo">
-            <div class="logo-circle"></div>
-            <div class="logo-letter">WD</div>
-        </div>
 
-        <div class="site-title">
-            <span class="site-name">WebDev Portfolio</span>
-            <span class="site-subtitle">Frontend student</span>
-        </div>
-    </div>
+<div class="logo-wd-b">
+    <span class="w1"></span>
+    <span class="w2"></span>
+    <span class="w3"></span>
+    <span class="d"></span>
+</div>
+<div class="site-name pretty-a">WebDev <span>Portfolio</span></div>
 
     <button class="burger" id="burgerBtn">
         <span></span>
@@ -35,10 +27,20 @@
     </button>
 
     <nav class="menu" id="mobileMenu">
-        <a href="index.html">Главная</a>
-        <a href="pages/course.html">Курсовая</a>
-        <a href="pages/about.html">О себе</a>
-    </nav>
+    <a href="index.html">Главная</a>
+    <div class="dropdown">
+        <button class="drop-btn">Задания</button>
+        <div class="drop-content">
+            <a href="pages/tasks/task1.html">Задание 1</a>
+            <a href="pages/tasks/task2.html">Задание 2</a>
+            <a href="pages/tasks/task3.html">Задание 3</a>
+            <a href="pages/tasks/task4.html">Задание 4</a>
+            <a href="pages/tasks/task5.html">Задание 5</a>
+        </div>
+    </div>
+    <a href="pages/course.html">Курсовая</a>
+</nav>
+
 </header>
 
 <!-- основной контент -->
