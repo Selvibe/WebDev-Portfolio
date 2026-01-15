@@ -1,0 +1,159 @@
+// Ждём, пока HTML полностью загрузится
+document.addEventListener('DOMContentLoaded', () => {
+
+  // Игровое поле
+  const playground = document.getElementById('playground');
+
+  // Все кусочки пазла
+  const pieces = [...document.querySelectorAll('.piece')];
+
+  // Все целевые места
+  const targets = [...document.querySelectorAll('.target')];
+
+  // Максимальное расстояние для "прилипания" к месту
+  const SNAP_DIST = 25;
+
+  // Допустимая погрешность поворота
+  const SNAP_ROT = 10;
+
+  // Текущий активный (перетаскиваемый) элемент
+  let active = null;
+
+  // Применение поворота к элементу
+  function applyTransform(el) {
+    el.style.transform = `rotate(${el.dataset.rot}deg)`;
+  }
+
+  // Центр элемента (для проверки расстояния)
+  function center(el) {
+    const r = el.getBoundingClientRect();
+    return {
+      x: r.left + r.width / 2,
+      y: r.top + r.height / 2
+    };
+  }
+
+  // Центр нужного целевого места
+  function targetCenter(id) {
+    const t = targets.find(x => x.dataset.id === id);
+    const r = t.getBoundingClientRect();
+    return {
+      x: r.left + r.width / 2,
+      y: r.top + r.height / 2
+    };
+  }
+
+  // Разница между углами (учёт 360 градусов)
+  function degDiff(a, b) {
+    const d = Math.abs((a - b) % 360);
+    return Math.min(d, 360 - d);
+  }
+
+  // Начальное размещение кусочков
+  pieces.forEach(p => {
+
+    // Случайный поворот (0, 90, 180, 270)
+    p.dataset.rot = String([0, 90, 180, 270][Math.floor(Math.random() * 4)]);
+
+    // Флаг "закреплён / не закреплён"
+    p.dataset.locked = '0';
+
+    applyTransform(p);
+    
+pieces.forEach(p => {
+  // случайный угол поворота
+  p.dataset.rot = String([0,90,180,270][Math.floor(Math.random()*4)]);
+  p.dataset.locked = '0';
+  applyTransform(p);
+
+  // позиция справа от поля
+  p.style.left = `${370 + Math.random()*130}px`;
+  p.style.top  = `${Math.random()*250}px`;
+
+  // обработчики pointerdown, pointermove, pointerup...
+});
+
+
+    // Начало перетаскивания
+    p.addEventListener('pointerdown', e => {
+      if (p.dataset.locked === '1') return;
+
+      p.setPointerCapture(e.pointerId);
+      p.classList.add('is-dragging');
+
+      const r = p.getBoundingClientRect();
+
+      // Запоминаем смещение курсора
+      active = {
+        el: p,
+        ox: e.clientX - r.left,
+        oy: e.clientY - r.top
+      };
+
+      // Подсвечиваем правильное место
+      targets
+        .find(t => t.dataset.id === p.dataset.id)
+        .classList.add('active');
+    });
+
+    // Перемещение элемента
+    p.addEventListener('pointermove', e => {
+      if (!active || active.el !== p) return;
+
+      const pr = playground.getBoundingClientRect();
+
+      p.style.left = `${e.clientX - pr.left - active.ox}px`;
+      p.style.top  = `${e.clientY - pr.top  - active.oy}px`;
+    });
+
+    // Отпускание элемента
+    p.addEventListener('pointerup', () => {
+      if (!active) return;
+
+      p.classList.remove('is-dragging');
+
+      const tc = targetCenter(p.dataset.id);
+      const pc = center(p);
+
+      const dist = Math.hypot(tc.x - pc.x, tc.y - pc.y);
+      const rotOk = degDiff(+p.dataset.rot, 0) <= SNAP_ROT;
+
+      // Если элемент рядом и повернут правильно
+      if (dist < SNAP_DIST && rotOk) {
+        const pr = playground.getBoundingClientRect();
+
+        // Ставим точно в центр ячейки
+        p.style.left = `${tc.x - pr.left - 60}px`;
+        p.style.top  = `${tc.y - pr.top  - 60}px`;
+
+        p.dataset.rot = '0';
+        p.dataset.locked = '1';
+        applyTransform(p);
+
+        p.classList.add('is-locked');
+      }
+
+      // Убираем подсветку
+      targets.forEach(t => t.classList.remove('active'));
+
+      active = null;
+
+      // Проверка: собран ли весь пазл
+      if (pieces.every(x => x.dataset.locked === '1')) {
+        playground.classList.add('complete');
+      }
+    });
+  });
+
+  // Поворот колесиком мыши
+  playground.addEventListener('wheel', e => {
+    if (!active) return;
+
+    e.preventDefault();
+
+    active.el.dataset.rot =
+      +active.el.dataset.rot + (e.deltaY > 0 ? 15 : -15);
+
+    applyTransform(active.el);
+  }, { passive: false });
+});

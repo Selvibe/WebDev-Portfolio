@@ -1,0 +1,91 @@
+/* Общий контейнер */
+.puzzle-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 40px 0;
+}
+
+/* Игровое поле */
+#playground {
+  width: 370px;
+  height: 370px;
+  position: relative;
+  border: 3px dashed var(--color-accent);
+  border-radius: 16px;
+  background: #fff;
+}
+
+/* Ячейки, куда нужно класть кусочки */
+.target {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border: 2px dashed rgba(113,85,122,0.5);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Подсветка активной ячейки */
+.target.active {
+  opacity: 1;
+}
+
+/* Сетка 3×3 */
+.target[data-id="0"] { left: 0; top: 0; }
+.target[data-id="1"] { left: 120px; top: 0; }
+.target[data-id="2"] { left: 240px; top: 0; }
+
+.target[data-id="3"] { left: 0; top: 120px; }
+.target[data-id="4"] { left: 120px; top: 120px; }
+.target[data-id="5"] { left: 240px; top: 120px; }
+
+.target[data-id="6"] { left: 0; top: 240px; }
+.target[data-id="7"] { left: 120px; top: 240px; }
+.target[data-id="8"] { left: 240px; top: 240px; }
+
+/* Кусочки пазла */
+.piece {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  background-image: url("../images/cat.png");
+  background-size: 360px 360px;
+  cursor: grab;
+  user-select: none;
+}
+
+/* Во время перетаскивания */
+.piece.is-dragging {
+  cursor: grabbing;
+  z-index: 10;
+}
+
+/* Когда элемент установлен */
+.piece.is-locked {
+  cursor: default;
+  z-index: 1;
+}
+
+/* Координаты фона (разрез изображения) */
+.piece[data-id="0"] { background-position: 0 0; }
+.piece[data-id="1"] { background-position: -120px 0; }
+.piece[data-id="2"] { background-position: -240px 0; }
+
+.piece[data-id="3"] { background-position: 0 -120px; }
+.piece[data-id="4"] { background-position: -120px -120px; }
+.piece[data-id="5"] { background-position: -240px -120px; }
+
+.piece[data-id="6"] { background-position: 0 -240px; }
+.piece[data-id="7"] { background-position: -120px -240px; }
+.piece[data-id="8"] { background-position: -240px -240px; }
+
+/* Анимация после завершения */
+#playground.complete {
+  animation: pulse 0.6s ease;
+}
+
+@keyframes pulse {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}

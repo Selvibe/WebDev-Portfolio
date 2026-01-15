@@ -6,6 +6,8 @@
     <title>О себе | WebDev Portfolio</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/task5.css">
+
 </head>
 <body>
 
@@ -45,8 +47,46 @@
     <section class="text-block">
         <h2> Задание 5. События и перетаскивание элементов.</h2>
         <h3>Описание задания:</h3>
-        <p></p>
+        <p>Нужно собрать изображение кота, <br>
+        перетаскивая части и вращая их колёсиком мыши.</p>
     </section>
+
+  <!-- Контейнер пазла -->
+  <section class="puzzle-wrapper">
+    <div id="playground">
+
+      <!-- Целевые места -->
+      <div class="target" data-id="0"></div>
+      <div class="target" data-id="1"></div>
+      <div class="target" data-id="2"></div>
+      <div class="target" data-id="3"></div>
+      <div class="target" data-id="4"></div>
+      <div class="target" data-id="5"></div>
+      <div class="target" data-id="6"></div>
+      <div class="target" data-id="7"></div>
+      <div class="target" data-id="8"></div>
+
+      <!-- Части изображения -->
+      <div class="piece" data-id="0"></div>
+      <div class="piece" data-id="1"></div>
+      <div class="piece" data-id="2"></div>
+      <div class="piece" data-id="3"></div>
+      <div class="piece" data-id="4"></div>
+      <div class="piece" data-id="5"></div>
+      <div class="piece" data-id="6"></div>
+      <div class="piece" data-id="7"></div>
+      <div class="piece" data-id="8"></div>
+
+    </div>
+  </section>
+
+      <section class="text-block">
+    <h3>Управление:</h3> 
+<p>Клик — взять фигуру <br>
+Колёсико — поворот</p>
+</section>
+</section>
+
 
 </main>
 
@@ -55,5 +95,6 @@
 </footer>
 
 <script src="../../js/menu.js"></script>
+<script src="../../js/task5.js"></script>
 </body>
 </html>
