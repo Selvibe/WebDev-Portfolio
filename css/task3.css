@@ -1,0 +1,174 @@
+/* ===============================
+   FLEXBOX РЕКЛАМА
+   =============================== */
+
+/* --- Основной контейнер --- */
+.flex-ad {
+    width: 200px;
+    height: 200px;
+    margin: 30px auto;
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    border-radius: 20px;
+    cursor: pointer;
+    box-shadow: 0 14px 30px rgba(58,52,91,0.18);
+}
+
+/* --- Фон рекламы --- */
+.ad-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: filter 0.4s ease; /* плавное появление сепии */
+}
+
+/* Сепия только на фон при active */
+.flex-ad:active .ad-bg {
+    filter: sepia(1);
+}
+
+/* --- Внутренний flex-контейнер --- */
+.ad-inner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    width: 100%;
+    padding-bottom: 16px;
+}
+
+/* ===============================
+   МАЛЬЧИК
+   =============================== */
+
+.boy {
+    position: absolute;
+    bottom: 12px;
+    height: 130px;
+    transition: transform 1.2s cubic-bezier(0.18, 0.9, 0.32, 1),
+                opacity 0.3s ease;
+}
+
+/* мальчик смотрит вправо (статичное и hover состояние) */
+.boy-right {
+    left: -90px;
+    opacity: 1;
+}
+
+/* мальчик смотрит влево (active состояние) */
+.boy-left {
+    left: 120px;
+    opacity: 0;
+}
+
+/* hover: мальчик забегает слева направо */
+.flex-ad:hover .boy-right {
+    transform: translateX(200px);
+}
+
+/* active: показываем мальчика влево */
+.flex-ad:active .boy-right {
+    opacity: 0;
+}
+.flex-ad:active .boy-left {
+    opacity: 1;
+}
+
+/* ===============================
+   ТЕКСТ
+   =============================== */
+
+/* --- Hover-текст ("Игрушки оптом") --- */
+.text-hover {
+    color: #c0c0c0; /* серый цвет */
+    position: absolute;
+    left: 8px;
+    bottom: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    text-align: left;
+    padding: 4px 8px;
+    border-radius: 8px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+/* показать hover-текст при наведении */
+.flex-ad:hover .text-hover {
+    opacity: 1;
+}
+
+/* --- Active-текст ("Самые веселые игрушки!") --- */
+.text-active {
+    color: #26ff00; /* кислотно-зеленый */
+    position: absolute;
+    left: 10px;
+    bottom: 100px; /* подгонка по макету */
+    font-size: 14px;
+    font-weight: 700;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+
+    /* наклон текста "горкой" */
+    transform: rotate(-25deg);
+    transform-origin: left bottom;
+}
+
+/* показать текст при нажатии */
+.flex-ad:active .text-active {
+    opacity: 1;
+}
+
+/* скрыть hover-текст при активном состоянии */
+.flex-ad:active .text-hover {
+    opacity: 0;
+}
+
+/* ===============================
+   ВЕРТУШКА
+   =============================== */
+
+/* контейнер палочки */
+.spinner-stick-div {
+    display: none; 
+    position: absolute;
+    left: 115px;
+    bottom: 60px;
+}
+
+/* контейнер вертушки */
+.spinner-fan-div {
+    display: none; 
+    position: absolute;
+    left: 130px;
+    bottom: 90px;
+}
+
+/* показываем вертушку только при нажатии */
+.flex-ad:active .spinner-stick-div,
+.flex-ad:active .spinner-fan-div {
+    display: flex;
+}
+
+/* изображение палочки */
+.spinner-stick {
+    height: 50px;
+}
+
+/* изображение вертушки */
+.spinner-fan {
+    height: 45px;
+    margin-left: -25px;
+    animation: spin 0.6s linear infinite;
+}
+
+/* анимация вращения вертушки */
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
