@@ -1,6 +1,6 @@
 
 // вручную сколько заданий выполнено:
-const completedTasks = 3;  // менять только это число
+const completedTasks = 5;  // менять только это число
 
 // количество заданий:
 const TOTAL_TASKS = 5;
