@@ -13,11 +13,11 @@
 
 /* фоновые классы */
 .class1{
-  background:rgb(204, 192, 217);
+  background:hsl(327, 56%, 79%);
 }
 
 .class2{
-  background:rgb(251, 212, 180);
+  background:rgb(187, 180, 251);
 }
 
 /* номер */
