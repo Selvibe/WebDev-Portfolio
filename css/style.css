@@ -222,46 +222,6 @@ a {
     color: var(--color-primary);
 }
 
-/* секция навыков */
-.skills {
-    margin: 60px 0;
-}
-
-.skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 24px;
-}
-
-.skill-card {
-    background: #fff;
-    border-radius: 20px;
-    padding: 24px;
-    text-align: center;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-    transition: transform 0.3s ease;
-}
-
-.skill-card:hover {
-    transform: translateY(-6px);
-}
-
-.skill-icon {
-    width: 56px;
-    height: 56px;
-    margin: 0 auto 14px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    font-size: 22px;
-}
-
-.icon-pink { background: var(--color-primary); }
-.icon-purple { background: var(--color-accent); }
-.icon-soft { background: var(--color-strong); }
-
 /* Футер */
 .footer {
     background: var(--color-secondary);
