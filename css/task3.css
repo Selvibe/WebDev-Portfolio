@@ -1,90 +1,85 @@
-/* ===============================
-   FLEXBOX РЕКЛАМА
-   =============================== */
+/* FLEXBOX РЕКЛАМА  */
 
-/* --- Основной контейнер --- */
+/* Основной контейнер рекламы */
 .flex-ad {
-    width: 200px;
-    height: 200px;
-    margin: 30px auto;
-    position: relative;
-    display: flex;
-    overflow: hidden;
-    border-radius: 20px;
-    cursor: pointer;
-    box-shadow: 0 14px 30px rgba(58,52,91,0.18);
+    width: 200px;            /* ширина блока */
+    height: 200px;           /* высота блока */
+    margin: 30px auto;       /* центрирование блока и отступ сверху */
+    position: relative;      /* чтобы позиционировать внутренние элементы */
+    display: flex;           /* включаем flex-контейнер */
+    overflow: hidden;        /* скрываем выходящее за границы */
+    border-radius: 20px;     /* скругляем углы */
+    cursor: pointer;         /* курсор-указатель при наведении */
+    box-shadow: 0 14px 30px rgba(58,52,91,0.18); /* легкая тень */
 }
 
-/* --- Фон рекламы --- */
+/* Фоновое изображение рекламы */
 .ad-bg {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: filter 0.4s ease; /* плавное появление сепии */
+    position: absolute;      /* располагаем на весь контейнер */
+    inset: 0;                /* все стороны равны 0 */
+    width: 100%;             /* на всю ширину */
+    height: 100%;            /* на всю высоту */
+    object-fit: cover;       /* изображение сохраняет пропорции и покрывает блок */
+    transition: filter 0.4s ease; /* плавное появление фильтра при активации */
 }
 
-/* Сепия только на фон при active */
+/* Сепия только при клике */
 .flex-ad:active .ad-bg {
     filter: sepia(1);
 }
 
-/* --- Внутренний flex-контейнер --- */
+/* --- Внутренний flex-контейнер для текста и мальчика --- */
 .ad-inner {
     position: relative;
-    z-index: 2;
+    z-index: 2;             /* поверх фонового изображения */
     display: flex;
-    align-items: flex-end;
-    justify-content: center;
+    align-items: flex-end;   /* выравнивание по нижнему краю */
+    justify-content: center; /* по центру по горизонтали */
     width: 100%;
-    padding-bottom: 16px;
+    padding-bottom: 16px;    /* отступ снизу */
 }
 
-/* ===============================
-   МАЛЬЧИК
-   =============================== */
+/*МАЛЬЧИК */
 
+/* изображение мальчика */
 .boy {
     position: absolute;
-    bottom: 12px;
-    height: 130px;
+    bottom: 12px;           /* отступ от низа контейнера */
+    height: 130px;          /* высота изображения */
     transition: transform 1.2s cubic-bezier(0.18, 0.9, 0.32, 1),
-                opacity 0.3s ease;
+                opacity 0.3s ease; /* анимация движения и исчезновения */
 }
 
 /* мальчик смотрит вправо (статичное и hover состояние) */
 .boy-right {
-    left: -90px;
-    opacity: 1;
+    left: -90px;            /* начальная позиция слева */
+    opacity: 1;             /* полностью видимый */
 }
 
-/* мальчик смотрит влево (active состояние) */
+/* мальчик смотрит влево (при клике) */
 .boy-left {
-    left: 120px;
-    opacity: 0;
+    left: 120px;            /* смещаем вправо */
+    opacity: 0;             /* изначально скрыт */
 }
 
-/* hover: мальчик забегает слева направо */
+/* hover: мальчик забегает справа налево */
 .flex-ad:hover .boy-right {
     transform: translateX(200px);
 }
 
 /* active: показываем мальчика влево */
 .flex-ad:active .boy-right {
-    opacity: 0;
+    opacity: 0;             /* скрываем правого */
 }
 .flex-ad:active .boy-left {
-    opacity: 1;
+    opacity: 1;             /* показываем левого */
 }
 
-/* ===============================
-   ТЕКСТ
-   =============================== */
+/* ТЕКСТ*/
 
-/* --- Hover-текст ("Игрушки оптом") --- */
+/* Hover-текст ("Игрушки оптом") */
 .text-hover {
-    color: #c0c0c0; /* серый цвет */
+    color: #c0c0c0;          /* серый цвет */
     position: absolute;
     left: 8px;
     bottom: 8px;
@@ -93,8 +88,8 @@
     text-align: left;
     padding: 4px 8px;
     border-radius: 8px;
-    opacity: 0;
-    transition: opacity 0.4s ease;
+    opacity: 0;              /* скрыт по умолчанию */
+    transition: opacity 0.4s ease; /* плавное появление */
 }
 
 /* показать hover-текст при наведении */
@@ -102,16 +97,16 @@
     opacity: 1;
 }
 
-/* --- Active-текст ("Самые веселые игрушки!") --- */
+/*Active-текст ("Самые веселые игрушки!")  */
 .text-active {
-    color: #26ff00; /* кислотно-зеленый */
+    color: #26ff00;           /* кислотно-зеленый */
     position: absolute;
     left: 10px;
-    bottom: 100px; /* подгонка по макету */
+    bottom: 100px;            /* расположение по макету */
     font-size: 14px;
     font-weight: 700;
-    white-space: nowrap;
-    opacity: 0;
+    white-space: nowrap;      /* текст не переносится */
+    opacity: 0;               /* изначально скрыт */
     transition: opacity 0.4s ease;
 
     /* наклон текста "горкой" */
@@ -124,47 +119,45 @@
     opacity: 1;
 }
 
-/* скрыть hover-текст при активном состоянии */
+/* скрыть hover-текст при клике */
 .flex-ad:active .text-hover {
     opacity: 0;
 }
 
-/* ===============================
-   ВЕРТУШКА
-   =============================== */
+/*ВЕРТУШКА */
 
-/* контейнер палочки */
+/* контейнер для палочки вертушки */
 .spinner-stick-div {
-    display: none; 
+    display: none;            /* изначально скрыт */
     position: absolute;
     left: 115px;
     bottom: 60px;
 }
 
-/* контейнер вертушки */
+/* контейнер для вертушки */
 .spinner-fan-div {
-    display: none; 
+    display: none;            /* изначально скрыт */
     position: absolute;
     left: 130px;
     bottom: 90px;
 }
 
-/* показываем вертушку только при нажатии */
+/* показываем вертушку только при клике */
 .flex-ad:active .spinner-stick-div,
 .flex-ad:active .spinner-fan-div {
     display: flex;
 }
 
-/* изображение палочки */
+/* изображение палочки вертушки */
 .spinner-stick {
     height: 50px;
 }
 
-/* изображение вертушки */
+/* изображение лопасти вертушки */
 .spinner-fan {
     height: 45px;
-    margin-left: -25px;
-    animation: spin 0.6s linear infinite;
+    margin-left: -25px;       /* подгонка по центру палочки */
+    animation: spin 0.6s linear infinite; /* вращение */
 }
 
 /* анимация вращения вертушки */

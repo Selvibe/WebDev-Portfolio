@@ -3,60 +3,66 @@
 <head>
 <meta charset="UTF-8">
 <title>Игра</title>
+<!-- Подключение глобальных стилей -->
 <link rel="stylesheet" href="../../css/style.css">
 <link rel="stylesheet" href="../css/game.css">
 </head>
 <body>
 
 <header class="header">
-<div class="logo-wd-b">
-    <span class="w1"></span>
-    <span class="w2"></span>
-    <span class="w3"></span>
-    <span class="d"></span>
-</div>
-<div class="site-name pretty-a">WebDev <span>Portfolio</span></div>
+    <!-- Логотип сайта -->
+    <div class="logo-wd-b">
+        <span class="w1"></span>
+        <span class="w2"></span>
+        <span class="w3"></span>
+        <span class="d"></span>
+    </div>
+    <div class="site-name pretty-a">WebDev <span>Portfolio</span></div>
 
+    <!-- Кнопка бургер-меню для мобильной версии -->
     <button class="burger" id="burgerBtn">
         <span></span>
         <span></span>
         <span></span>
     </button>
 
+    <!-- Навигационное меню -->
     <nav class="menu" id="mobileMenu">
-    <a href="../../index.html">Главная</a>
-    <div class="dropdown">
-        <button class="drop-btn">Задания</button>
-        <div class="drop-content">
-            <a href="../../pages/tasks/task1.html">Задание 1</a>
-            <a href="../../pages/tasks/task2.html">Задание 2</a>
-            <a href="../../pages/tasks/task3.html">Задание 3</a>
-            <a href="../../pages/tasks/task4.html">Задание 4</a>
-            <a href="../../pages/tasks/task5.html">Задание 5</a>
+        <a href="../../index.html">Главная</a>
+        <div class="dropdown">
+            <button class="drop-btn">Задания</button>
+            <div class="drop-content">
+                <a href="../../pages/tasks/task1.html">Задание 1</a>
+                <a href="../../pages/tasks/task2.html">Задание 2</a>
+                <a href="../../pages/tasks/task3.html">Задание 3</a>
+                <a href="../../pages/tasks/task4.html">Задание 4</a>
+                <a href="../../pages/tasks/task5.html">Задание 5</a>
+            </div>
         </div>
-    </div>
-    <a href="../index.html">Курсовая</a>
+        <a href="../index.html">Курсовая</a>
     </nav>
 </header>
 
-<div class="game-wrapper">
-<div class="hud">
-    <div>Уровень: <span id="level">1</span></div>
-    <div>Очки: <span id="score">0</span></div>
-    <div>Время: <span id="timer">60</span></div>
-</div>
+<main class="game-wrapper">
+    <!-- Информация о текущем уровне, очках и таймере -->
+    <div class="hud">
+        <div>Уровень: <span id="level">1</span></div>
+        <div>Очки: <span id="score">0</span></div>
+        <div>Время: <span id="timer">60</span></div>
+    </div>
 
-<!-- Образец -->
-<div id="sample" class="square sample"></div>
+    <!-- Пример для сравнения -->
+    <div id="sample" class="square sample"></div>
 
-<!-- Игровое поле -->
-<div id="grid" class="grid-container"></div>
-</div>
+    <!-- Игровое поле, куда добавляются квадраты -->
+    <div id="grid" class="grid-container"></div>
+</main>
 
 <footer class="footer">
     © 2026 WebDev Portfolio
 </footer>
 
+<!-- Подключение скриптов -->
 <script src="../../js/menu.js"></script>
 <script src="../js/game.js"></script>
 </body>

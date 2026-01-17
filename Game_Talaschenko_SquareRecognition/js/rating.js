@@ -1,23 +1,22 @@
 const list = document.getElementById("list");
-const newGameBtn = document.getElementById("newGame");
 
+// Загружаем рейтинг из localStorage
 let ratings = JSON.parse(localStorage.getItem("ratings") || "[]");
 
+// Сортировка по убыванию очков
 ratings.sort((a, b) => b.score - a.score);
 
+// Если рейтинг пуст, выводим сообщение
 if (ratings.length === 0) {
     list.innerHTML = '<li>Рейтинг пуст</li>';
 } else {
-    ratings.forEach(player => {
-        const li = document.createElement("li");
-        li.textContent = `${player.name} — ${player.score} баллов (${player.date})`;
+    ratings.forEach((item, index) => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+            <strong>${index + 1}.</strong>
+            ${item.name}
+            <span>${item.score}</span>
+        `;
         list.appendChild(li);
     });
 }
-
-newGameBtn.addEventListener("click", () => {
-    localStorage.removeItem("ratings");
-    localStorage.removeItem("playerName");
-    localStorage.removeItem("secretLevel");
-    window.location.href = "../index.html";
-});

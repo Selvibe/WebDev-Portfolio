@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+  // Массив латинских фраз
   const latinArr = [
     "Consuetudo est altera natura",
     "Nota bene",
@@ -7,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "Per aspera ad astra"
   ];
 
+  // Массив русских переводов
   const ruArr = [
     "Привычка - вторая натура",
     "Заметьте хорошо!",
@@ -14,16 +16,18 @@ document.addEventListener("DOMContentLoaded", () => {
     "Через тернии к звёздам"
   ];
 
+  // Получаем элементы DOM
   const randBox = document.getElementById("rand");
   const createBtn = document.getElementById("createBtn");
   const repaintBtn = document.getElementById("repaintBtn");
   const resetBtn = document.getElementById("resetBtn");
 
-  // генерирация случайного порядка
+  // Порядок фраз для случайного вывода
   let order = [...latinArr.keys()];
-  shuffle(order);
-  let clickCount = 0;
+  shuffle(order); // перемешиваем
+  let clickCount = 0; // счётчик добавленных фраз
 
+  // Функция перемешивания массива
   function shuffle(arr){
     for(let i = arr.length - 1; i > 0; i--){
       let j = Math.floor(Math.random() * (i + 1));
@@ -31,14 +35,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  // Функция сброса всех фраз
   function resetAll(){
-    randBox.innerHTML = "";   // очистка
+    randBox.innerHTML = "";   // очистка контейнера
     clickCount = 0;
     order = [...latinArr.keys()];
     shuffle(order);
-    }
+  }
 
-    // создать 
+  // Создание новой фразы
   createBtn.addEventListener("click", () => {
     if(order.length === 0){
       alert("Фразы закончились");
@@ -54,11 +59,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     p.id = "phrase-" + clickCount;
     p.classList.add("phrase");
+
+    // Альтернирование цвета строк
     if(clickCount % 2 === 0){
       p.classList.add("class1");
     } else {
       p.classList.add("class2");
     }
+
+    // Формирование HTML для фразы
     p.innerHTML = `
       <span class="num">n=${clickCount-1}.</span>
       <span class="latin">${latin}</span>
@@ -67,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
     randBox.appendChild(p);
   });
 
-  // перекрас
+  // Перекраска четных строк (toggle жирности)
   repaintBtn.addEventListener("click", () => {
     const lines = randBox.querySelectorAll(".phrase");
     lines.forEach((p, i) => {
@@ -77,6 +86,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // сброс
+  // Сброс всех фраз
   resetBtn.addEventListener("click", resetAll);
 });

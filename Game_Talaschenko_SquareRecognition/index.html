@@ -5,12 +5,14 @@
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
     <title>Курсовая | WebDev Portfolio</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Подключение стилей -->
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="css/game.css">
 </head>
 <body>
 
 <header class="header">
+    <!-- Логотип сайта -->
     <div class="logo-wd-b">
         <span class="w1"></span>
         <span class="w2"></span>
@@ -19,12 +21,14 @@
     </div>
     <div class="site-name pretty-a">WebDev <span>Portfolio</span></div>
 
+    <!-- Кнопка бургер-меню для мобильной версии -->
     <button class="burger" id="burgerBtn">
         <span></span>
         <span></span>
         <span></span>
     </button>
 
+    <!-- Навигационное меню -->
     <nav class="menu" id="mobileMenu">
         <a href="../index.html">Главная</a>
         <div class="dropdown">
@@ -42,11 +46,12 @@
 </header>
 
 <main class="content">
-
+    <!-- Блок начала игры -->
     <div class="game-start-container">
         <div class="game-start-card">
             <h1>Распознавание квадратов</h1>
 
+            <!-- Поле для ввода имени -->
             <input type="text" id="playerName" placeholder="Введите имя">
 
             <p>Выберите уровень:</p>
@@ -59,19 +64,27 @@
         </div>
     </div>
 
+    <!-- Блок с рейтингом игроков -->
+    <section class="game-wrapper rating-section">
+        <h2>Рейтинг игроков</h2>
+        <ul id="list" class="rating-list"></ul>
+    </section>
+
+    <!-- Блок описания курсовой работы -->
     <section class="text-block">
         <h2>Описание курсовой работы</h2>
         <p>Курсовая работа представляет собой адаптивный многостраничный веб-сайт, выполненный с использованием чистых HTML и CSS.</p>
         <p>Реализованы шапка, меню, контент, футер и логотип CSS. Проект можно расширять.</p>
     </section>
-
 </main>
 
 <footer class="footer">
     © 2026 WebDev Portfolio
 </footer>
 
+<!-- Подключение скриптов -->
 <script src="../js/menu.js"></script>
 <script src="js/auth.js"></script>
+<script src="js/rating.js"></script>
 </body>
 </html>

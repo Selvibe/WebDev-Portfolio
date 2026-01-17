@@ -479,7 +479,7 @@ a {
     color: var(--color-strong);
 }
 
-/* ========== DROPDOWN — DESKTOP ========== */
+/*DROPDOWN - DESKTOP  */
 .dropdown {
     position: relative;
 }
@@ -525,7 +525,7 @@ a {
 }
 
 
-/* ========== DROPDOWN — MOBILE ========== */
+/*  DROPDOWN - MOBILE */
 @media (max-width: 768px) {
     .dropdown {
         width: 100%;
