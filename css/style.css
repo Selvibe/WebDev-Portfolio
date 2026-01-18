@@ -274,7 +274,7 @@ a {
     color: var(--text-light);
 }
 
-/* сетка заданий пинтерест*/
+/* сетка заданий как в пинтерест*/
 .tasks-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -321,63 +321,6 @@ a {
     font-size: 14px;
     color: var(--text-light);
 }
-
-
-
-/* Прогресс */
-.progress-wrapper {
-    max-width: 1200px;
-    width: 100%;
-    margin: 40px auto;
-    text-align: center;
-}
-
-.progress-bar {
-    width: 100%;
-    height: 18px;
-    background: #eee;
-    border-radius: 14px;
-    overflow: hidden;
-    position: relative;
-}
-
-.progress-fill {
-    height: 100%;
-    width: 40%; /* пример */
-    background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
-    transition: width 0.5s ease;
-}
-
-.progress-text {
-    margin-top: 14px;
-    font-size: 14px;
-    color: var(--text-light);
-}
-
-.progress-steps {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 18px;
-}
-
-.progress-steps span {
-    width: 30px;
-    height: 30px;
-    background: #e0e0e0;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 13px;
-    font-weight: 600;
-}
-
-.progress-steps span.active {
-    background: var(--color-primary);
-    color: #fff;
-    box-shadow: 0 0 0 4px rgba(209,131,169,0.25);
-}
-
 /* меню для мобильных */
 @media (max-width: 768px) {
     .burger {
