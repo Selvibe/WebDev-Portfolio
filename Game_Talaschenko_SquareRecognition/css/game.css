@@ -5,7 +5,7 @@
     --dark: #3A345B;
 }
 
-/* ===== Старт игры ===== */
+/* Старт игры */
 .game-start-container {
     display: flex;
     justify-content: center;
@@ -69,7 +69,7 @@
     background: var(--accent);
 }
 
-/* ===== Игра ===== */
+/* Игра*/
 .game-wrapper {
     padding: 30px;
     text-align: center;
@@ -140,7 +140,7 @@
     100% { transform: scale(1); }
 }
 
-/* ===== Рейтинг ===== */
+/*  Рейтинг*/
 .rating-section {
     margin-top: 60px;
     background: #fff;

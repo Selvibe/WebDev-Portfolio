@@ -172,7 +172,7 @@ function endGame(win) {
     localStorage.setItem('ratings', JSON.stringify(results));
 
     // возвращаем на главную страницу
-    window.location.href = '../index.html';
+    window.location.href = 'rating.html';
 }
 
 // Запуск игры при загрузке страницы
