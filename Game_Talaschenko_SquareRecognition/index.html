@@ -53,33 +53,21 @@
 </header>
 
 <main class="content">
-    <!-- Блок начала игры -->
     <div class="game-start-container">
         <div class="game-start-card">
             <h1>Распознавание квадратов</h1>
-
-            <!-- Поле для ввода имени -->
-            <input type="text" id="playerName" placeholder="Введите имя">
-
-            <p>Выберите уровень:</p>
+            <input type="text" id="playerName" placeholder="Введите ваше имя" maxlength="15">
+            <p>Выберите начальную сложность:</p>
             <div class="level-buttons">
-                <button class="level-btn" data-level="0">Уровень 1 (3×3)</button>
-                <button class="level-btn" data-level="1">Уровень 2 (4×4)</button>
-                <button class="level-btn" data-level="2">Уровень 3 (5×5)</button>
-                <button class="level-btn" data-level="3">Уровень 4 (6×6)</button>
+                <button class="level-btn" data-level="0">Легко</button>
+                <button class="level-btn" data-level="1">Средне</button>
+                <button class="level-btn" data-level="2">Сложно</button>
             </div>
+            <p style="font-size: 0.8em; margin-top: 15px; color: #777;">
+                (Клавиша 'Y' во время игры — пропустить уровень для проверки)
+            </p>
         </div>
     </div>
-
-
-    <section class="text-block">
-        <h2>Правила игры "Распознавание квадратов":</h2>
-        <p>Вверху экрана появляется образец - квадрат с разноцветными клетками. <br>
-            Ниже расположено несколько других квадратов.<br>
-            Твоя задача - найти квадрат, который полностью совпадает с образцом.<br>
-            Важно: квадраты могут быть повернуты, но всё равно считаются одинаковыми</p>
-        <p></p>
-    </section>
 </main>
 
 <footer class="footer">

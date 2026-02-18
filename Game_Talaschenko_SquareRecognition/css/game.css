@@ -5,168 +5,326 @@
     --dark: #3A345B;
 }
 
-/* Старт игры */
-.game-start-container {
-    display: flex;
-    justify-content: center;
-    margin: 50px 0;
-}
-
-.game-start-card {
-    background: #fff;
-    padding: 40px 30px;
-    border-radius: 20px;
-    width: 350px;
-    text-align: center;
-
-    box-shadow: 0 20px 40px rgba(58,52,91,0.15);
-    animation: fadeIn 0.6s ease-out;
-}
-
-.game-start-card h1 {
-    margin-bottom: 25px;
-    color: var(--accent);
-    font-size: 24px;
-}
-
-/* Ввод имени */
-#playerName {
-    width: 100%;
-    padding: 12px 14px;
-    font-size: 16px;
-    border-radius: 12px;
-    border: 1px solid #ccc;
-    margin-bottom: 20px;
-    outline: none;
-}
-
-#playerName:focus {
-    border-color: var(--main);
-    box-shadow: 0 0 8px rgba(209,131,169,0.4);
-}
-
-/* Кнопки уровней */
-.level-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 12px;
-}
-
-.level-btn {
-    padding: 12px 22px;
-    font-size: 16px;
-    border-radius: 12px;
-    border: none;
-    cursor: pointer;
-
-    background: var(--main);
-    color: #fff;
-    font-weight: 600;
-}
-
-.level-btn:hover {
-    background: var(--accent);
-}
-
-/* Игра*/
 .game-wrapper {
-    padding: 30px;
+    padding: 20px;
     text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
-/* Сетка */
+.hud {
+    display: flex;
+    justify-content: space-around;
+    background: #fff;
+    padding: 15px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* ОБРАЗЕЦ (Центральный блок) */
+.sample {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 160px;
+    height: 160px;
+    background: #fff;
+    border-radius: 24px;
+    margin: 0 auto 20px;
+    box-shadow: 0 10px 25px rgba(58,52,91,0.12);
+    border: 3px solid var(--accent);
+    overflow: hidden;
+}
+
+.sample-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Фикс матрицы на 1 уровне */
+.sample-matrix-box {
+    width: 80px;
+    height: 80px;
+    border: 2px solid var(--dark);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.sample-color-box {
+    width: 70px;
+    height: 70px;
+    border-radius: 12px;
+    border: 2px solid var(--dark);
+}
+
+.sample-label {
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--accent);
+    text-transform: uppercase;
+}
+
+/* ИГРОВОЕ ПОЛЕ */
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, 86px);
-    gap: 16px;
+    grid-template-columns: repeat(auto-fill, 90px);
+    gap: 15px;
     justify-content: center;
-    margin-top: 30px;
 }
 
-/* Квадрат */
 .square {
-    width: 86px;
-    height: 86px;
-    display: grid;
-
+    width: 90px;
+    height: 90px;
     background: #fff;
-    border-radius: 14px;
-    overflow: hidden;
+    border-radius: 12px;
     cursor: pointer;
-
-    box-shadow: 0 12px 30px rgba(58,52,91,0.18);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
 }
 
-.square:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 18px 40px rgba(58,52,91,0.25);
+.square:hover { transform: translateY(-3px); }
+
+/* УРОВЕНЬ 2: Охота */
+.hunt-area {
+    position: relative;
+    height: 400px;
+    background: rgba(255,255,255,0.5);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 2px solid #ddd;
 }
 
-/* Ячейки */
-.cell {
+.floating-sq {
+    animation: floatAnim 4s ease-in-out infinite;
+}
+
+@keyframes floatAnim {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    33% { transform: translate(30px, -40px) rotate(5deg); }
+    66% { transform: translate(-20px, 20px) rotate(-5deg); }
+}
+
+/* УРОВЕНЬ 3: Сортировка */
+.sort-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
     width: 100%;
-    height: 100%;
-    background: #fff;
-
-    box-shadow:
-        inset 0 0 0 1px rgba(58,52,91,0.15),
-        inset 0 -2px 4px rgba(58,52,91,0.08);
 }
 
-/* Образец */
-.sample {
-    width: 130px;
-    height: 130px;
-    margin: 24px auto;
-
-    background: #fff;
-    border-radius: 18px;
-
-    box-shadow:
-        0 25px 50px rgba(58,52,91,0.25),
-        inset 0 0 0 2px var(--accent);
+#drop-zone {
+    width: 100%;
+    max-width: 500px;
+    height: 120px;
+    border: 4px dashed var(--accent);
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.5);
 }
 
-/* Правильный выбор */
-.square.correct {
-    animation: correctPick 0.4s ease;
+.draggable-items-row {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    width: 100%;
 }
 
-@keyframes correctPick {
-    0% { transform: scale(1); }
-    60% { transform: scale(1.12); }
-    100% { transform: scale(1); }
+.zone-label {
+    font-size: 18px;
+    font-weight: 900;
+    color: var(--accent);
 }
 
-/*  Рейтинг*/
+.zone-active {
+    background: var(--bg);
+    border-style: solid;
+    transform: scale(1.03);
+}
+
+/* СИСТЕМНЫЕ СТИЛИ */
+.cell { width: 100%; height: 100%; border: 0.1px solid rgba(0,0,0,0.05); }
+
+.hint-btn {
+    margin: 10px;
+    padding: 10px 20px;
+    background: #ffc107;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.hint-highlight {
+    outline: 5px solid #FFD700 !important;
+    box-shadow: 0 0 20px #FFD700 !important;
+    transform: scale(1.1);
+    z-index: 100;
+}
+
+.shake { animation: shake 0.5s; }
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
+
+.dragging { opacity: 0.3; }
+
+/* --- СТИЛИ ДЛЯ СТРАНИЦЫ РЕЙТИНГА --- */
+
 .rating-section {
-    margin-top: 60px;
+    max-width: 600px;
+    margin: 40px auto;
     background: #fff;
     padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    border-radius: 24px;
+    box-shadow: 0 15px 35px rgba(58, 52, 91, 0.1);
+    text-align: center;
+}
+
+.rating-section h2 {
+    color: var(--accent);
+    margin-bottom: 25px;
+    font-size: 28px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .rating-list {
     list-style: none;
     padding: 0;
-    margin: 25px 0;
+    margin: 0;
 }
 
 .rating-list li {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-    padding: 14px 18px;
-    border-radius: 14px;
-
-    background: linear-gradient(145deg, #ffffff, var(--bg));
-    box-shadow: 0 6px 14px rgba(58,52,91,0.15);
+    padding: 15px 20px;
+    margin-bottom: 12px;
+    background: var(--bg); /* Светло-розовый фон из твоих переменных */
+    border-radius: 15px;
+    transition: transform 0.2s ease;
 }
 
+.rating-list li:hover {
+    transform: scale(1.02);
+}
+
+/* Стили для отдельных элементов строки */
 .rating-list li strong {
     color: var(--accent);
+    font-size: 18px;
+    width: 30px;
+    text-align: left;
+}
+
+.rating-list li span {
+    font-weight: 800;
+    color: var(--main); /* Розовый акцент для очков */
+    font-size: 20px;
+}
+
+/* Если список пуст */
+.rating-list li:only-child {
+    justify-content: center;
+    color: var(--accent);
+    opacity: 0.6;
+    font-style: italic;
+}
+
+/* Кнопка "На главную" или "Играть снова" (если есть на странице) */
+.back-btn {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 12px 25px;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* КАРТОЧКА СТАРТА НА ГЛАВНОЙ */
+.game-start-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 20px;
+}
+
+.game-start-card {
+    background: #fff;
+    padding: 40px;
+    border-radius: 30px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(58, 52, 91, 0.15);
+}
+
+.game-start-card h1 {
+    font-size: 26px;
+    color: var(--accent);
+    margin-bottom: 25px;
+}
+
+/* ИНПУТ ИМЕНИ */
+#playerName {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #eee;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+#playerName:focus {
+    border-color: var(--main);
+}
+
+/* КНОПКИ СЛОЖНОСТИ */
+.level-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.level-btn {
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    background: var(--main);
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.level-btn:hover {
+    background: var(--accent);
+    transform: translateY(-2px);
+}
+
+.level-btn[data-level="1"] { background: #8ac926; } /* Зеленая для легкого */
+.level-btn[data-level="2"] { background: #ff9f1c; } /* Оранжевая для среднего */
+.level-btn[data-level="3"] { background: #ff595e; } /* Красная для сложного */
+
+.game-start-card p {
+    margin: 15px 0;
+    font-size: 14px;
+    color: #666;
 }

@@ -1,181 +1,145 @@
-// Настройки уровней: размер поля, количество цветов, количество квадратов, время
-const levels = [
-    { size: 3, colors: 2, count: 6, time: 60 },
-    { size: 4, colors: 3, count: 10, time: 50 },
-    { size: 5, colors: 4, count: 16, time: 40 },
-    { size: 6, colors: 4, count: 20, time: 35 }
+const levelConfigs = [
+    { type: 'match', instructions: "Найди квадрат, совпадающий с образцом.", time: 40 },
+    { type: 'hunt', instructions: "Уничтожай квадраты нужного цвета ДВОЙНЫМ кликом!", time: 30 },
+    { type: 'sort', instructions: "Перетащи квадрат нужного цвета в ЗОНУ ЗАХВАТА.", time: 45 }
 ];
 
-let currentLevel = 0; // текущий уровень
-let score = 0;        // очки игрока
-let timer;            // таймер
+const COLORS = ['#ff595e', '#1982c4', '#6a4c93', '#8ac926'];
+let currentLevelIdx = 0, subLevelStep = 0, score = 0, timer, currentTarget = null;
+let playerName = localStorage.getItem('playerName') || 'Гость';
+let baseDifficulty = parseInt(localStorage.getItem('secretLevel') || 0);
 
-// Получаем элементы DOM
-const sampleEl = document.getElementById('sample');
-const grid = document.getElementById('grid');
-const levelText = document.getElementById('level');
-const scoreText = document.getElementById('score');
-const timerText = document.getElementById('timer');
+const grid = document.getElementById('grid'), sampleEl = document.getElementById('sample');
+const timerText = document.getElementById('timer'), scoreText = document.getElementById('score'), levelText = document.getElementById('level');
 
-// Получаем данные игрока из localStorage
-const playerName = localStorage.getItem('playerName') || 'Игрок';
-const storedLevel = localStorage.getItem('secretLevel');
+window.onload = () => {
+    window.addEventListener('keydown', (e) => {
+        if (e.key.toLowerCase() === 'y' || e.key.toLowerCase() === 'н') nextStep();
+    });
+    startLevel();
+};
 
-// Если был сохранён уровень, устанавливаем его
-if (storedLevel !== null) {
-    const lvl = parseInt(storedLevel);
-    if (!isNaN(lvl) && lvl >= 0 && lvl < levels.length) {
-        currentLevel = lvl;
+function startLevel() {
+    const config = levelConfigs[currentLevelIdx];
+    levelText.textContent = `${currentLevelIdx + 1} (Шаг ${subLevelStep + 1}/3)`;
+    grid.innerHTML = ''; sampleEl.innerHTML = ''; currentTarget = null;
+    
+    document.getElementById('q-text')?.remove();
+    document.querySelector('.game-wrapper').insertAdjacentHTML('afterbegin', `<h3 id="q-text" style="margin-bottom:20px; color: #71557A;">${config.instructions}</h3>`);
+    
+    const adjustedTime = config.time - (baseDifficulty * 5);
+    if (config.type === 'match') renderMatchLevel();
+    else if (config.type === 'hunt') renderHuntLevel();
+    else if (config.type === 'sort') renderSortLevel();
+    startTimer(adjustedTime);
+}
+
+function renderMatchLevel() {
+    grid.className = 'grid-container';
+    const size = 2 + baseDifficulty; 
+    const baseMatrix = generateMatrix(size, 3);
+    const correctIdx = Math.floor(Math.random() * 8);
+    
+    renderSquare(sampleEl, baseMatrix, true);
+
+    for (let i = 0; i < 8; i++) {
+        const sq = document.createElement('div');
+        sq.className = 'square';
+        const isCorrect = i === correctIdx;
+        renderSquare(sq, isCorrect ? baseMatrix : generateMatrix(size, 3), false);
+        if (isCorrect) currentTarget = sq;
+        sq.onclick = () => isCorrect ? nextStep() : penalty();
+        grid.appendChild(sq);
     }
 }
 
-// Цвета для квадратов
-const COLORS = [
-    '#A3C4F3', // голубой
-    '#99c03f', // зелёный
-    '#df6657', // розовый
-    '#ffdc7b'  // жёлтый
-];
-
-// Получение случайного цвета
-function randomColor(count) {
-    return COLORS[Math.floor(Math.random() * count)];
-}
-
-// Функция поворота матрицы на 90 градусов по часовой стрелке
-function rotateMatrix(matrix) {
-    const size = matrix.length;
-    const rotated = [];
-    for (let x = 0; x < size; x++) {
-        rotated[x] = [];
-        for (let y = size - 1; y >= 0; y--) {
-            rotated[x].push(matrix[y][x]);
-        }
+function renderHuntLevel() {
+    grid.className = 'hunt-area'; 
+    const targetColor = COLORS[Math.floor(Math.random() * COLORS.length)];
+    sampleEl.innerHTML = `<div class="sample-content"><div class="sample-color-box" style="background:${targetColor}"></div><div class="sample-label">ЦЕЛЬ</div></div>`;
+    
+    let targetsCount = 0;
+    for (let i = 0; i < 10; i++) {
+        const sq = document.createElement('div');
+        sq.className = 'square floating-sq'; 
+        const isTarget = Math.random() > 0.4 || i < 2; 
+        const color = isTarget ? targetColor : COLORS.find(c => c !== targetColor);
+        if (isTarget) { targetsCount++; if (!currentTarget) currentTarget = sq; }
+        sq.style.background = color;
+        sq.style.left = Math.random() * 85 + '%';
+        sq.style.top = Math.random() * 60 + '%';
+        sq.style.position = 'absolute';
+        sq.addEventListener('dblclick', () => {
+            if (color === targetColor) {
+                sq.style.transform = 'scale(0)';
+                setTimeout(() => { sq.remove(); targetsCount--; if (targetsCount <= 0) nextStep(); }, 200);
+            } else { penalty(); }
+        });
+        grid.appendChild(sq);
     }
-    return rotated;
 }
 
-// Создание матрицы случайных цветов
-function generateMatrix(size, colorsCount) {
-    return Array.from({ length: size }, () =>
-        Array.from({ length: size }, () => randomColor(colorsCount))
-    );
-}
+function renderSortLevel() {
+    grid.className = 'sort-container'; 
+    const targetColor = COLORS[Math.floor(Math.random() * COLORS.length)];
+    sampleEl.innerHTML = `<div class="sample-content"><div class="sample-color-box" style="background:${targetColor}"></div><div class="sample-label">НУЖНЫЙ ЦВЕТ</div></div>`;
+    
+    const zone = document.createElement('div');
+    zone.id = 'drop-zone';
+    zone.innerHTML = `<span class="zone-label">ЗОНА ЗАХВАТА</span>`;
+    grid.appendChild(zone);
 
-// Случайное вращение матрицы
-function randomRotate(matrix) {
-    let result = matrix;
-    const turns = Math.floor(Math.random() * 4); // число поворотов 0-3
-    for (let i = 0; i < turns; i++) {
-        result = rotateMatrix(result);
+    const itemsRow = document.createElement('div');
+    itemsRow.className = 'draggable-items-row';
+    grid.appendChild(itemsRow);
+
+    for (let i = 0; i < 7; i++) {
+        const isCorrect = (i === 0); 
+        const color = isCorrect ? targetColor : COLORS.find(c => c !== targetColor) || COLORS[1];
+        const item = document.createElement('div');
+        item.className = 'square draggable-item';
+        item.style.background = color;
+        item.draggable = true;
+        if (isCorrect && !currentTarget) currentTarget = item;
+        item.addEventListener('dragstart', (e) => { e.dataTransfer.setData('color', color); item.classList.add('dragging'); });
+        item.addEventListener('dragend', () => item.classList.remove('dragging'));
+        itemsRow.appendChild(item);
     }
-    return { matrix: result, angle: turns * 90 }; // возвращаем угол для отображения
-}
 
-// Отображение квадрата на странице
-function renderSquare(container, matrix, angle = 0) {
-    container.innerHTML = '';
-    container.style.display = 'grid';
-    container.style.gridTemplateColumns = `repeat(${matrix.length}, 1fr)`;
-    container.style.gridTemplateRows = `repeat(${matrix.length}, 1fr)`;
-    container.style.transform = `rotate(${angle}deg)`; // поворот квадрата
-
-    matrix.flat().forEach(color => {
-        const cell = document.createElement('div');
-        cell.className = 'cell';
-        cell.style.background = color;
-        container.appendChild(cell);
+    zone.addEventListener('dragover', (e) => { e.preventDefault(); zone.classList.add('zone-active'); });
+    zone.addEventListener('dragleave', () => zone.classList.remove('zone-active'));
+    zone.addEventListener('drop', (e) => {
+        e.preventDefault(); zone.classList.remove('zone-active');
+        if (e.dataTransfer.getData('color') === targetColor) { document.querySelector('.dragging')?.remove(); nextStep(); }
+        else { penalty(); }
     });
 }
 
-// Запуск уровня
-function startLevel() {
-    grid.innerHTML = '';
-    const level = levels[currentLevel];
-    levelText.textContent = currentLevel + 1;
-
-    // создаём базовую матрицу для примера
-    const baseMatrix = generateMatrix(level.size, level.colors);
-    const rotatedSample = randomRotate(baseMatrix);
-    renderSquare(sampleEl, rotatedSample.matrix, rotatedSample.angle);
-
-    const correctIndex = Math.floor(Math.random() * level.count); // случайная "правильная" клетка
-
-    // создаём квадраты для выбора
-    for (let i = 0; i < level.count; i++) {
-        const square = document.createElement('div');
-        square.className = 'square';
-
-        let matrix, angle;
-
-        if (i === correctIndex) {
-            const rotated = randomRotate(baseMatrix); // правильная копия
-            matrix = rotated.matrix;
-            angle = rotated.angle;
-            square.dataset.correct = 'true'; // отмечаем как правильную
-        } else {
-            const wrong = generateMatrix(level.size, level.colors);
-            const rotated = randomRotate(wrong); // случайный вариант
-            matrix = rotated.matrix;
-            angle = rotated.angle;
-        }
-
-        renderSquare(square, matrix, angle);
-        square.addEventListener('click', () => checkSquare(square));
-        grid.appendChild(square);
+function renderSquare(container, matrix, isSample) {
+    container.innerHTML = '';
+    const target = isSample ? document.createElement('div') : container;
+    if (isSample) {
+        const wrap = document.createElement('div');
+        wrap.className = 'sample-content';
+        target.className = 'sample-matrix-box';
+        wrap.appendChild(target);
+        wrap.insertAdjacentHTML('beforeend', '<div class="sample-label">ОБРАЗЕЦ</div>');
+        container.appendChild(wrap);
     }
-
-    startTimer(level.time);
+    target.style.display = 'grid';
+    target.style.gridTemplateColumns = `repeat(${matrix.length}, 1fr)`;
+    matrix.flat().forEach(c => {
+        const cell = document.createElement('div');
+        cell.style.background = c;
+        cell.className = 'cell';
+        target.appendChild(cell);
+    });
 }
 
-// Проверка выбранного квадрата
-function checkSquare(square) {
-    if (square.dataset.correct) {
-        square.classList.add('correct');
-        score += 100 * (currentLevel + 1);
-        currentLevel++;
-        if (currentLevel >= levels.length) {
-            endGame(true);
-        } else {
-            startLevel();
-        }
-    } else {
-        score -= 50; // штраф за ошибку
-    }
-    scoreText.textContent = score;
-}
-
-// Таймер уровня
-function startTimer(seconds) {
-    clearInterval(timer);
-    let time = seconds;
-    timerText.textContent = time;
-
-    timer = setInterval(() => {
-        time--;
-        timerText.textContent = time;
-
-        if (time <= 0) {
-            clearInterval(timer);
-            endGame(false); // время вышло
-        }
-    }, 1000);
-}
-
-// Завершение игры
-function endGame(win) {
-    clearInterval(timer);
-
-    // сохраняем результаты в localStorage
-    const results = JSON.parse(localStorage.getItem('ratings') || '[]');
-    results.push({ name: playerName, score, date: new Date().toLocaleString() });
-    localStorage.setItem('ratings', JSON.stringify(results));
-
-    // возвращаем на главную страницу
-    window.location.href = 'rating.html';
-}
-
-// Запуск игры при загрузке страницы
-window.onload = () => {
-    startLevel();
-};
+function useHint() { score -= 150; scoreText.textContent = score; if (currentTarget) { currentTarget.classList.add('hint-highlight'); setTimeout(() => currentTarget.classList.remove('hint-highlight'), 1500); } }
+function changeTheme(t) { document.body.classList.remove('theme-neon', 'theme-coffee'); if(t!=='default') document.body.classList.add('theme-'+t); }
+function nextStep() { score += (100*(baseDifficulty+1)); scoreText.textContent = score; subLevelStep++; if(subLevelStep>=3){ subLevelStep=0; currentLevelIdx++; } if(currentLevelIdx>=levelConfigs.length) endGame(true); else startLevel(); }
+function penalty() { score -= 50; scoreText.textContent = score; grid.classList.add('shake'); setTimeout(() => grid.classList.remove('shake'), 500); }
+function startTimer(s) { clearInterval(timer); let t = s; timerText.textContent = t; timer = setInterval(() => { t--; timerText.textContent = t; if(t<=0) endGame(false); }, 1000); }
+function endGame(w) { clearInterval(timer); alert(w ? "Победа!" : "Время вышло!"); const r = JSON.parse(localStorage.getItem('ratings') || '[]'); r.push({ name: playerName, score: score, date: new Date().toLocaleDateString() }); localStorage.setItem('ratings', JSON.stringify(r)); window.location.href = 'rating.html'; }
+function generateMatrix(s, c) { return Array.from({ length: s }, () => Array.from({ length: s }, () => COLORS[Math.floor(Math.random() * c)])); }

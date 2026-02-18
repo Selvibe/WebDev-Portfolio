@@ -44,18 +44,14 @@
 </header>
 
 <main class="game-wrapper">
-    <!-- Информация о текущем уровне, очках и таймере -->
     <div class="hud">
         <div>Уровень: <span id="level">1</span></div>
         <div>Очки: <span id="score">0</span></div>
-        <div>Время: <span id="timer">60</span></div>
+        <div>Время: <span id="timer">60</span></div>        
     </div>
-
-    <!-- Пример для сравнения -->
-    <div id="sample" class="square sample"></div>
-
-    <!-- Игровое поле, куда добавляются квадраты -->
-    <div id="grid" class="grid-container"></div>
+<button class="hint-btn" onclick="useHint()">💡 Подсказать (-150 очков)</button>
+    <div id="sample" class="sample"></div>
+    <div id="grid"></div>
 </main>
 
 <footer class="footer">

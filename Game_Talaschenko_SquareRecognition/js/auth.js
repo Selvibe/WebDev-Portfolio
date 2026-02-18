@@ -23,4 +23,15 @@ levelButtons.forEach(button => {
         // Переходим на страницу игры
         window.location.href = "pages/game.html";
     });
+
 });
+document.getElementById('toggleTheme')?.addEventListener('click', () => {
+    document.body.classList.toggle('dark-theme');
+    const isDark = document.body.classList.contains('dark-theme');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+});
+
+// При загрузке проверять тему
+if (localStorage.getItem('theme') === 'dark') {
+    document.body.classList.add('dark-theme');
+}
