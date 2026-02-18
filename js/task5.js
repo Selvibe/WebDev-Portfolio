@@ -52,29 +52,28 @@ document.addEventListener('DOMContentLoaded', () => {
   // Начальное размещение кусочков
   pieces.forEach(p => {
 
-    // Случайный поворот (0, 90, 180, 270)
+
     p.dataset.rot = String([0, 90, 180, 270][Math.floor(Math.random() * 4)]);
 
-    // Флаг "закреплён / не закреплён"
+
     p.dataset.locked = '0';
 
     applyTransform(p);
     
 pieces.forEach(p => {
-  // случайный угол поворота
+
   p.dataset.rot = String([0,90,180,270][Math.floor(Math.random()*4)]);
   p.dataset.locked = '0';
   applyTransform(p);
 
-  // позиция справа от поля
+
   p.style.left = `${370 + Math.random()*130}px`;
   p.style.top  = `${Math.random()*250}px`;
 
-  // обработчики pointerdown, pointermove, pointerup...
+
 });
 
 
-    // Начало перетаскивания
     p.addEventListener('pointerdown', e => {
       if (p.dataset.locked === '1') return;
 
@@ -83,20 +82,20 @@ pieces.forEach(p => {
 
       const r = p.getBoundingClientRect();
 
-      // Запоминаем смещение курсора
+
       active = {
         el: p,
         ox: e.clientX - r.left,
         oy: e.clientY - r.top
       };
 
-      // Подсвечиваем правильное место
+
       targets
         .find(t => t.dataset.id === p.dataset.id)
         .classList.add('active');
     });
 
-    // Перемещение элемента
+
     p.addEventListener('pointermove', e => {
       if (!active || active.el !== p) return;
 
@@ -106,7 +105,7 @@ pieces.forEach(p => {
       p.style.top  = `${e.clientY - pr.top  - active.oy}px`;
     });
 
-    // Отпускание элемента
+
     p.addEventListener('pointerup', () => {
       if (!active) return;
 
@@ -118,11 +117,10 @@ pieces.forEach(p => {
       const dist = Math.hypot(tc.x - pc.x, tc.y - pc.y);
       const rotOk = degDiff(+p.dataset.rot, 0) <= SNAP_ROT;
 
-      // Если элемент рядом и повернут правильно
       if (dist < SNAP_DIST && rotOk) {
         const pr = playground.getBoundingClientRect();
 
-        // Ставим точно в центр ячейки
+
         p.style.left = `${tc.x - pr.left - 60}px`;
         p.style.top  = `${tc.y - pr.top  - 60}px`;
 
@@ -133,19 +131,19 @@ pieces.forEach(p => {
         p.classList.add('is-locked');
       }
 
-      // Убираем подсветку
+
       targets.forEach(t => t.classList.remove('active'));
 
       active = null;
 
-      // Проверка: собран ли весь пазл
+
       if (pieces.every(x => x.dataset.locked === '1')) {
         playground.classList.add('complete');
       }
     });
   });
 
-  // Поворот колесиком мыши
+
   playground.addEventListener('wheel', e => {
     if (!active) return;
 
