@@ -1,30 +1,28 @@
-// Ждём, пока HTML полностью загрузится
+
 document.addEventListener('DOMContentLoaded', () => {
 
-  // Игровое поле
+
   const playground = document.getElementById('playground');
 
-  // Все кусочки пазла
+
   const pieces = [...document.querySelectorAll('.piece')];
 
-  // Все целевые места
+
   const targets = [...document.querySelectorAll('.target')];
 
-  // Максимальное расстояние для "прилипания" к месту
+  console.log(targets);
+
   const SNAP_DIST = 25;
 
-  // Допустимая погрешность поворота
+
   const SNAP_ROT = 10;
 
-  // Текущий активный (перетаскиваемый) элемент
   let active = null;
 
-  // Применение поворота к элементу
   function applyTransform(el) {
     el.style.transform = `rotate(${el.dataset.rot}deg)`;
   }
 
-  // Центр элемента (для проверки расстояния)
   function center(el) {
     const r = el.getBoundingClientRect();
     return {
@@ -43,22 +41,12 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   }
 
-  // Разница между углами (учёт 360 градусов)
   function degDiff(a, b) {
     const d = Math.abs((a - b) % 360);
     return Math.min(d, 360 - d);
   }
 
-  // Начальное размещение кусочков
-  pieces.forEach(p => {
 
-
-    p.dataset.rot = String([0, 90, 180, 270][Math.floor(Math.random() * 4)]);
-
-
-    p.dataset.locked = '0';
-
-    applyTransform(p);
     
 pieces.forEach(p => {
 
@@ -69,9 +57,6 @@ pieces.forEach(p => {
 
   p.style.left = `${370 + Math.random()*130}px`;
   p.style.top  = `${Math.random()*250}px`;
-
-
-});
 
 
     p.addEventListener('pointerdown', e => {
