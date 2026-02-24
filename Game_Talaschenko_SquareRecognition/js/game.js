@@ -34,26 +34,17 @@ window.onload = () => {
     window.addEventListener('keydown', (e) => {
         const key = e.key.toLowerCase();
 
-        // -----------------------------
-        // 1) Клавиша Y / Н — всегда работает
-        // -----------------------------
         if (key === 'y' || key === 'н') {
             nextStep();
             return;
         }
 
-        // -----------------------------
-        // 2) Включение демо-режима F9
-        // -----------------------------
         if (!demoMode && e.key === 'F9') {
             demoMode = true;
             alert("Демо-режим включён");
             return;
         }
 
-        // -----------------------------
-        // 3) Если демо-режим включён — управляем уровнями
-        // -----------------------------
         if (demoMode) {
             if (key === '1') goToLevel(0);
             if (key === '2') goToLevel(1);
@@ -64,8 +55,6 @@ window.onload = () => {
             if (key === 'e') goToLevel(currentLevelIdx, 2);
         }
     });
-
-    // запуск первого уровня
     startLevel();
 };
 
@@ -200,18 +189,15 @@ function renderSortLevel() {
         </div>
     `;
 
-    // ===== ЗОНА ЗАХВАТА =====
     const zone = document.createElement('div');
     zone.id = 'drop-zone';
     zone.innerHTML = `<span class="zone-label">ЗОНА ЗАХВАТА</span>`;
     grid.appendChild(zone);
 
-    // ===== РЯД КВАДРАТОВ =====
     const itemsRow = document.createElement('div');
     itemsRow.className = 'draggable-items-row';
     grid.appendChild(itemsRow);
 
-    // ===== КОЛ-ВО НУЖНЫХ КВАДРАТОВ ПО СЛОЖНОСТИ =====
     let minTargets, maxTargets;
 
     if (baseDifficulty === 0) {
@@ -228,7 +214,7 @@ function renderSortLevel() {
     let targetsToFind =
         Math.floor(Math.random() * (maxTargets - minTargets + 1)) + minTargets;
 
-    // ===== СЛУЧАЙНЫЕ ИНДЕКСЫ ПРАВИЛЬНЫХ =====
+    // СЛУЧАЙНЫЕ ИНДЕКСЫ ПРАВИЛЬНЫХ
     const totalItems = 12;
     const correctIndexes = new Set();
 
@@ -236,7 +222,6 @@ function renderSortLevel() {
         correctIndexes.add(Math.floor(Math.random() * totalItems));
     }
 
-    // ===== СОЗДАНИЕ КВАДРАТОВ =====
     for (let i = 0; i < totalItems; i++) {
         const isCorrect = correctIndexes.has(i);
         const color = isCorrect
@@ -262,7 +247,6 @@ function renderSortLevel() {
         itemsRow.appendChild(item);
     }
 
-    // ===== DRAG & DROP =====
     zone.addEventListener('dragover', (e) => {
         e.preventDefault();
         zone.classList.add('zone-active');
